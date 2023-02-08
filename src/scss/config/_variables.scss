@@ -1,0 +1,91 @@
+/* ********************************** */
+/* Light Theme */
+/* ********************************** */
+
+// background
+$body-bg : #f4f3fb;
+$font-color-base: #4C4B67;
+$border-color:#E3EAF4;
+
+// primary colors
+$primary: #715bfe;
+$danger: #EA5381;
+$warning: #FF764C;
+$secondary: #6683d9;
+$accent : #FFAEAE;
+$success: #6ECF98;
+$teal: #84BCBD;
+$info: #3A99B9;
+$pink:#EA5381;
+$light:#FFF;
+$heading-color : #12173a;
+
+// extra colors
+$gray: #f4f3fb;
+$dark-gray:#EDEFF4;
+$dark:#BDC8D0;
+
+/* ********************************** */
+
+
+/* ********************************** */
+/* Dark Theme */
+/* ********************************** */
+
+
+// background
+$body-bg-dark : #161719;
+$font-color-base-dark: rgba(255, 255, 255, 0.77);
+$border-color-dark:#2e2f33;
+
+// primary colors
+$primary-dark: #715bfe;
+$danger-dark: #EA5381;
+$warning-dark: #FF764C;
+$secondary-dark: #6683d9;
+$accent-dark : #FFAEAE;
+$success-dark: #6ECF98;
+$teal-dark: #84BCBD;
+$info-dark: #3A99B9;
+$pink-dark:#EA5381;
+$light-dark:#252628;
+$heading-color-dark : #FFF;
+
+// extra colors
+$gray-dark: #303134;
+$dark-gray-dark: #2e2f33;
+$dark-dark: #2e2f33;
+
+/* ********************************** */
+
+// typography
+$font-size-base: 14px;
+$font-family-base: 'Readex Pro', sans-serif;
+
+// forms size
+$small-form-size : 30px;
+$normal-form-size : 40px;
+$large-form-size : 50px;
+$extra-large-form-size: 55px;
+
+$small-textarea-size : 50px;
+$normal-textarea-size : 100px;
+$large-textarea-size : 150px;
+
+$header-height: 65px;
+
+$normal-radius: 6px;
+
+// drawer
+$drawer-size : 400px;
+
+
+// layout variables
+$nav-width:250px;
+$nav-width-sm:75px;
+
+$pages-spacing : 2rem;
+
+
+// grid-gap
+$grid-gap: 1.25rem

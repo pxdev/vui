@@ -1,0 +1,57 @@
+.loading-component {
+  position: absolute;
+  inset: 0 0 0 0;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-container {
+  display: flex;
+}
+
+.loading-block {
+  margin: 0 10px 10px 0;
+  width: 6px;
+  height: 40px;
+  border-radius: 3px;
+  position: relative;
+  background: var(--primary);
+
+}
+
+.loading-block:nth-child(4n+1) {
+  animation: wavey 0.8s ease .0s infinite;
+}
+
+.loading-block:nth-child(4n+2) {
+  animation: wavey 0.8s ease .1s infinite;
+}
+
+.loading-block:nth-child(4n+3) {
+  animation: wavey 0.8s ease .2s infinite;
+}
+
+.loading-block:nth-child(4n+4) {
+  animation: wavey 0.8s ease .3s infinite;
+  margin-right: 0;
+}
+
+@keyframes wavey {
+  0% {
+    top: 0;
+    opacity: 1;
+  }
+
+  50% {
+    top: 30px;
+  }
+
+  100% {
+    top: 0;
+    opacity: 1;
+
+  }
+}

@@ -1,0 +1,157 @@
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(50px);
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.fade-leave-active {
+  transition: all 0.3s ease-in-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+
+  .close-layer {
+    position: fixed;
+    inset: 0 0 0 0;
+  }
+
+  .close-btn {
+    font-size: 22px;
+    opacity: 0.5;
+    font-weight: 700;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .modal-dialog {
+    max-width: 660px;
+    margin: 2rem auto;
+    position: relative;
+    z-index: 10;
+    border-radius: $normal-radius;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.10);
+
+    @include for-size('phone-only') {
+      margin: 0 auto;
+    }
+
+    &.full {
+      max-width: none;
+      margin: 0.5rem;
+      inset: 0 0 0 0;
+    }
+
+    &.xl {
+      max-width: 1280px;
+    }
+
+
+    &.lg {
+      max-width: 960px;
+    }
+
+    &.sm {
+      max-width: 575px;
+    }
+
+    &.xs {
+      max-width: 375px;
+
+      .modal-content {
+        padding: 0.8rem;
+      }
+    }
+
+  }
+
+  .modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: var(--light);
+    background-clip: padding-box;
+    border-radius: .3rem;
+    outline: 0;
+    padding: 2.6rem;
+
+    @include for-size('phone-only') {
+      border-radius: 0;
+    }
+
+
+  }
+
+  .modal-header {
+    gap: 25px;
+    margin-bottom: 1.6rem;
+
+    h3 {
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--heading-color);
+
+      span {
+        display: block;
+        font-size: 14px;
+        padding: 5px 0;
+        color: var(--font-color-base);
+
+        @include for-size('phone-only') {
+          display: none;
+        }
+
+
+      }
+    }
+  }
+
+
+}
+
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 900;
+
+}
+

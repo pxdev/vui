@@ -1,0 +1,35 @@
+.avatar-group {
+  .avatar + .avatar {
+    margin-left: -10px;
+    position: relative;
+  }
+}
+
+.avatar {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: var(--dark-gray);
+  flex-shrink: 0;
+  border: 2px solid var(--light);
+
+
+  .avatar-ico {
+    display: block;
+    color: var(--font-color-base);
+    text-align: center;
+  }
+
+  .avatar-text {
+    display: block;
+    color: var(--font-color-base);
+    text-align: center;
+     text-transform: uppercase;
+  }
+
+}
+
+.rounded-circle {
+  border-radius: 50% !important;
+}

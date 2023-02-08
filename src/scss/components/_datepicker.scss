@@ -1,0 +1,41 @@
+$namespace: 'mx'; // change the 'mx' to 'xmx'. then <date-picker prefix-class="xmx" />
+
+$default-color: var(--font-color-base);
+$primary-color: var(--primary);
+$calendar-hover-color: var(--light);
+$today-color:  var(--primary);
+
+$calendar-hover-background-color: var(--primary);
+$calendar-in-range-background-color: var(--primary);
+$time-hover-background-color: var(--primary);
+
+@import './vue-datepicker-next/scss/index.scss';
+
+
+.#{$namespace}-datepicker svg {
+  fill: var(--font-color-base);
+}
+
+.#{$namespace}-datepicker-main{
+  background: var(--light);
+}
+.#{$namespace}-input {
+  border: none;
+  box-shadow: none;
+  height: 28px;
+  background: none;
+}
+
+.#{$namespace}-datepicker {
+  width: 100%;
+}
+.modal{
+  .#{$namespace}-calendar {
+    width: auto;
+  }
+}
+
+.#{$namespace}-datepicker-main {
+  background-color: var(--light);
+  border: 1px solid var(--border-color);
+}
