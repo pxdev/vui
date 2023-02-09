@@ -28,9 +28,9 @@
 
 
 %disabled {
-  background: #DFDFE4;
-  border-color: #DFDFE4;
-  color: #B3B3BF;
+  background: var(--dark-gray);
+  border-color:var(--gray);
+  color: var(--font-color-base);
   cursor: not-allowed;
   pointer-events:none ;
 

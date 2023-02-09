@@ -1,6 +1,6 @@
 <template>
   <div
-      class="d-flex "
+      class="d-flex"
       :class="`
       ${gap ? 'gap-' + gap : ''}
       ${bg ? 'bg-' + bg : ''}
@@ -33,12 +33,10 @@ export default {
     },
     content: {
       type: String,
-      default: 'center',
-    },
+     },
     items: {
       type: String,
-      default: 'center',
-    },
+     },
     wrap: {
       type: Boolean,
       default: false,

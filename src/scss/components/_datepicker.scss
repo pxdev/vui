@@ -6,7 +6,7 @@ $calendar-hover-color: var(--light);
 $today-color:  var(--primary);
 
 $calendar-hover-background-color: var(--primary);
-$calendar-in-range-background-color: var(--primary);
+$calendar-in-range-background-color: var(--gray);
 $time-hover-background-color: var(--primary);
 
 @import './vue-datepicker-next/scss/index.scss';
@@ -28,6 +28,8 @@ $time-hover-background-color: var(--primary);
 
 .#{$namespace}-datepicker {
   width: 100%;
+  padding-left: 0;
+  padding-right: 0;
 }
 .modal{
   .#{$namespace}-calendar {
@@ -39,3 +41,8 @@ $time-hover-background-color: var(--primary);
   background-color: var(--light);
   border: 1px solid var(--border-color);
 }
+
+
+.#{$namespace}-datepicker-popup {
+   box-shadow: 0 6px 32px rgba(0, 0, 0, 0.1);
+ }

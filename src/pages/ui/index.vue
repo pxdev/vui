@@ -13,7 +13,7 @@
 
       <div class="ui-nav card" style="min-width: 290px; position: sticky; top: 0">
         <ul class="tabbed-nav">
-          <li><a class="pd-5 d-flex" href="#DatePicker">Date Picker</a></li>
+          <li><a class="pd-5 d-flex" href="#DatePicker">Forms</a></li>
           <li><a class="pd-5 d-flex" href="#Modals">Modals</a></li>
 
           <li><a class="pd-5 d-flex" href="#Tables">Tables</a></li>
@@ -30,21 +30,52 @@
 
         <div id="DatePicker" class="card pd-50 gap-20 mg-b-30">
           <h2 class="mg-b-30">Forms</h2>
+          <grid class="mg-b-30">
+            <grid-col :md="12">
+              <h3 class="mg-b-20">Range Sliders</h3>
+            </grid-col>
+            <grid-col :md="6">
+              <form-input range-percentage class="mg-b-20" type="range" range-color="primary" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+            </grid-col>
+            <grid-col :md="6">
+              <form-input range-percentage class="mg-b-20" type="range" range-color="secondary" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+            </grid-col>
+            <grid-col :md="6">
+              <form-input range-percentage class="mg-b-20" type="range" range-color="danger" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+            </grid-col>
+            <grid-col :md="6">
+              <form-input range-percentage class="mg-b-20" type="range" range-color="warning" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+            </grid-col>
+            <grid-col :md="6">
+              <form-input range-percentage class="mg-b-20" type="range" range-color="info" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+            </grid-col>
+            <grid-col :md="6">
+              <form-input range-percentage class="mg-b-20" type="range" range-color="success" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+            </grid-col>
+          </grid>
+
 
           <grid>
-
             <grid-col :md="6" class="mg-b-20">
-              <form-input size="lg" required type="text" label="Form Text" :value="inputValue" placeholder="Enter your value" :options="inputOptions" @update:value="updateInputValue" />
-            </grid-col>
+              <h3 class="mg-b-20">Input Fields</h3>
+              <form-input size="sm" class="mg-b-20" required type="text" label="Form input text" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
+              <form-input size="lg" class="mg-b-20" type="password" label="Form input number" :value="inputValue" placeholder="Enter your password" @update:value="updateInputValue"/>
+              <form-input size="sm" class="mg-b-20" type="number" label="Form input number" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
+              <form-input size="lg" class="mg-b-20" type="textarea" label="Form textarea" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
 
-            <grid-col :md="6" class="mg-b-20">
-              <form-input size="lg" required type="password" label="Form Textarea" :value="inputValue" placeholder="Enter your value" :options="inputOptions" @update:value="updateInputValue" />
-            </grid-col>
+              <form-input size="lg" class="mg-b-20" type="radio" orient="horizontal" data-group="R1" label="Form Check horizontal" :options="inputOptions" @update:value="updateInputValue"/>
 
-            <grid-col :md="6" class="mg-b-20">
-              <form-input type="text" label="Form Input" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue" />
-            </grid-col>
+              <form-input size="lg" class="mg-b-20" type="radio" orient="vertical" data-group="R2" label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
 
+              <form-input size="lg" class="mg-b-20" type="checkbox" orient="vertical" data-group="c1" label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
+
+            </grid-col>
           </grid>
 
 
@@ -701,14 +732,10 @@
 <script>
 
 import {openModal, closeModal} from '@/components/ui/modal/modal';
-import Grid from "@/components/ui/UiApi.vue";
-import GridCol from "@/components/ui/grid/GridCol.vue";
-import FormInput from "@/components/ui/forms/FormInput.vue";
 
 
 export default {
   name: "index",
-  components: {FormInput, GridCol, Grid},
 
   data() {
 
@@ -873,22 +900,7 @@ export default {
       activeIndex: 0,
       selected: null,
       multiSelected: null,
-      options: [
-        {
-          label: 'Option 1',
-          children: [
-            {label: 'Option 1-1'},
-            {label: 'Option 1-2'},
-          ],
-        },
-        {
-          label: 'Option 2',
-          children: [
-            {label: 'Option 2-1'},
-            {label: 'Option 2-2'},
-          ],
-        },
-      ],
+
       links: [
         {name: 'Ahmed', icon: 'ri-map-pin-line'},
         {name: 'Ali', icon: 'ri-rocket-line'},
@@ -926,8 +938,8 @@ export default {
   methods: {
     openModal,
     closeModal,
+
     setLoading() {
-      console.log('clicked')
       this.isLoading = !this.isLoading
     },
 
@@ -935,18 +947,11 @@ export default {
       this.TableTheme = this.tableThemes[Math.floor(Math.random() * this.tableThemes.length)];
     },
 
-    updateInputValue(newValue){
+    updateInputValue(newValue) {
       console.log(newValue)
     }
-
   },
 
-  computed: {
-
-    theme() {
-      return this.$store.state.theme;
-    },
-  }
 
 }
 </script>
