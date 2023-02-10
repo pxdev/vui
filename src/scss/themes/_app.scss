@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;600&display=swap');
+
+:root {
+  --body-bg: #{$body-bg};
+  --primary: #{$primary};
+  --danger: #{$danger};
+  --warning: #{$warning};
+  --secondary: #{$secondary};
+  --accent: #{$accent};
+  --teal: #{$teal};
+  --info: #{$info};
+  --pink: #{$pink};
+  --success: #{$success};
+  --heading-color: #{$heading-color};
+  --gray: #{$gray};
+  --dark-gray: #{$dark-gray};
+  --light: #{$light};
+  --dark: #{$dark};
+  --border-color: #{$border-color};
+  --font-color-base: #{$font-color-base};
+}
+
+.dark {
+  --body-bg: #{$body-bg-dark};
+  --primary: #{$primary-dark};
+  --danger: #{$danger-dark};
+  --warning: #{$warning-dark};
+  --secondary: #{$secondary-dark};
+  --accent: #{$accent-dark};
+  --teal: #{$teal-dark};
+  --info: #{$info-dark};
+  --pink: #{$pink-dark};
+  --success: #{$success-dark};
+  --heading-color: #{$heading-color-dark};
+  --gray: #{$gray-dark};
+  --dark-gray: #{$dark-gray-dark};
+  --light: #{$light-dark};
+  --dark: #{$dark-dark};
+  --border-color: #{$border-color-dark};
+  --font-color-base: #{$font-color-base-dark};
+
+}
+
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  font-weight: 300;
+  scroll-behavior: smooth;
+  min-height: 100%;
+
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: 100%;
+  font-size: $font-size-base;
+  font-family: $font-family-base;
+  min-height: 100vh;
+}
+
+.app {
+  background: var(--body-bg);
+  color:  var(--font-color-base);
+}
+

@@ -1,0 +1,109 @@
+main {
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1680px;
+
+  .fluid {
+    max-width: none;
+  }
+}
+
+.portal-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1600px;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+
+.card {
+  background: var(--light);
+  border-radius: $normal-radius;
+  padding: 1.2rem;
+
+
+}
+
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -$grid-gap;
+  margin-right: -$grid-gap;
+
+  .grid-col {
+    padding-left: $grid-gap;
+    padding-right: $grid-gap;
+    margin-bottom: $grid-gap;
+
+    &.size-6 {
+      flex: 1 0 calc(50% - #{$grid-gap});
+      max-width: calc(50% - #{$grid-gap});
+
+      @include for-size('phone-only') {
+        flex: 1 0 100%;
+        max-width: 100%;
+      }
+
+    }
+
+    &.size-12 {
+      flex: 1 0 100%;
+      max-width: 100%;
+
+      @include for-size('phone-only') {
+        flex: 1 0 100%;
+        max-width: 100%;
+      }
+
+    }
+
+    &.size-4 {
+      flex: 1 0 calc(33.333% - #{$grid-gap});
+      max-width: calc(33.333% - #{$grid-gap});
+
+      @include for-size('phone-only') {
+        flex: 1 0 100%;
+        max-width: 100%;
+      }
+
+    }
+
+    &.size-8 {
+      flex: 1 0 calc(66.666% - #{$grid-gap});
+      max-width: calc(66.666% - #{$grid-gap});
+
+      @include for-size('phone-only') {
+        flex: 1 0 100%;
+      }
+
+    }
+
+
+  }
+
+}
+
+
+.flex-col {
+  --gap: 20px;
+  --columns: 2;
+  display: flex;
+  width: 100%;
+  background: gold;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}
+
+.flex-col-item {
+  width: calc((100% / var(--columns)) - var(--gap) + (var(--gap) / var(--columns)));
+  background: teal;
+}

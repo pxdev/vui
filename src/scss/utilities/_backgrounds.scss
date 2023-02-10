@@ -1,0 +1,81 @@
+
+.bg-white {
+  background: #FFF;
+}
+
+.bg-primary {
+  background: var(--primary);
+}
+
+.bg-secondary {
+  background: var(--secondary);
+}
+
+.bg-warning {
+  background: var(--warning);
+}
+
+.bg-success {
+  background: var(--success);
+}
+
+.bg-info {
+  background: var(--info);
+}
+
+.bg-danger {
+  background: var(--danger);
+}
+
+.bg-teal {
+  background: var(--teal);
+}
+
+.bg-gray {
+  background: var(--gray);
+}
+
+.bg-dark-gray {
+  background: var(--dark-gray);
+}
+
+.bg-pink {
+  background: var(--pink);
+}
+
+.bg-dark {
+  background: var(--dark);
+}
+
+// borders
+.bd {
+  border: 1px solid var(--border-color)
+}
+
+.bd-r {
+  border-right: 1px solid var(--border-color)
+}
+
+.bd-b {
+  border-bottom: 1px solid var(--border-color)
+}
+
+.bd-l {
+  border-left: 1px solid var(--border-color)
+}
+
+.bd-t {
+  border-top: 1px solid var(--border-color)
+}
+
+
+// shadows
+.shadow {
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.dark{
+  .shadow {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
+  }
+}

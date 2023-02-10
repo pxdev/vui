@@ -1,0 +1,144 @@
+
+.data-tabs {
+
+
+  .tabbed-nav {
+    @extend %flex-area;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+
+    .tabs-line {
+      height: 2px;
+      bottom: -1px;
+      border-radius: 2px;
+      background: var(--primary);
+      width: 0;
+      position: absolute;
+      transition: 0.3s all ease-in-out;
+    }
+
+    li {
+      a {
+        font-size: 16px;
+        opacity: 0.7;
+        padding: 15px 25px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: -1px;
+        white-space: nowrap;
+
+        .nav-text {
+          pointer-events: none;
+        }
+
+        i {
+          font-size: 18px;
+          pointer-events: none;
+        }
+
+      }
+
+      &.active {
+        a {
+          opacity: 1;
+          color: var(--primary);
+          //border-bottom: 2px solid var(--primary);
+        }
+
+
+      }
+    }
+
+  }
+
+  &.lg {
+    .tabbed-nav {
+      li {
+        a {
+          font-size: 20px;
+
+          i {
+            font-size: 22px;
+          }
+        }
+      }
+
+    }
+  }
+
+  &.sm {
+    .tabbed-nav {
+      li {
+        a {
+          font-size: 14px;
+          padding: 10px 15px;
+
+          i {
+            font-size: 16px;
+          }
+        }
+      }
+
+    }
+  }
+
+  &.horizontal {
+    display: flex;
+
+    .tabbed-nav {
+      border-radius: $normal-radius;
+      flex-direction: column;
+      border: 1px solid var(--border-color);
+      min-width: 250px;
+
+
+      .tabs-line {
+        height: 0;
+        left: -1px;
+        border-radius: 2px;
+        background: var(--primary);
+        width: 2px;
+        position: absolute;
+        transition: 0.3s all ease-in-out;
+      }
+
+      li {
+        &.active {
+          a {
+            border: 0;
+            opacity: 1;
+            color: var(--primary);
+          }
+        }
+
+      }
+
+
+    }
+
+    .data-tabs-content {
+      flex-grow: 1;
+      padding: 15px 25px;
+    }
+
+    &.reverse {
+      flex-direction: row-reverse;
+    }
+  }
+
+  .data-tabs-content {
+    position: relative;
+    padding: 25px 15px;
+  }
+
+
+  .data-tabs-content {
+    position: relative;
+    padding: 25px 15px;
+  }
+
+
+}
+
