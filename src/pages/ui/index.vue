@@ -13,9 +13,10 @@
 
       <div class="ui-nav card" style="min-width: 290px; position: sticky; top: 0">
         <ul class="tabbed-nav">
+
+          <li><a class="pd-5 d-flex" href="#Carousel">Carousel</a></li>
           <li><a class="pd-5 d-flex" href="#Forms">Forms</a></li>
           <li><a class="pd-5 d-flex" href="#Modals">Modals</a></li>
-
           <li><a class="pd-5 d-flex" href="#Tables">Tables</a></li>
           <li><a class="pd-5 d-flex" href="#Buttons">Buttons</a></li>
           <li><a class="pd-5 d-flex" href="#Dropdown">Dropdown</a></li>
@@ -27,6 +28,17 @@
         </ul>
       </div>
       <div class="ui-content">
+
+        <div id="Carousel" class="card pd-50 gap-20 mg-b-30">
+          <h3 >Carousel</h3>
+
+        <carousel>
+          <flex v-for="n in 10" :key="n" class="slide" style="width: 100%; flex-shrink: 0">
+            <img style="width: 100%;" src="https://cdn.openai.com/API/images/guides/image_variation_output.webp" />
+          </flex>
+        </carousel>
+
+        </div>
 
         <div id="Forms" class="card pd-50 gap-20 mg-b-30">
 
