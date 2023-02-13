@@ -1,8 +1,11 @@
 <template>
-  <div class="form-group" :class="formStyle">
 
 
-    <label v-if="label">{{ label }} <i v-if="required" class="tx-danger required-star">*</i> </label>
+  <div class="form-group"
+       :class="`${formStyle && type === 'text' || formStyle && type === 'textarea'  || formStyle && type === 'password' || formStyle && type === 'date' || formStyle && type === 'date-range' || formStyle && type === 'number'    ? formStyle : ''} ${type ? 'form-' + type + '-type' : '' }`">
+
+
+    <label class="form-label" v-if="label">{{ label }} <i v-if="required" class="tx-danger required-star">*</i> </label>
 
     <template v-if="type === 'text' || type === 'password'">
 
@@ -11,7 +14,7 @@
                @input="updateValue"/>
       </template>
 
-      <flex position="relative" v-if="type === 'password'">
+      <flex position="relative" fill v-if="type === 'password'">
         <input :type="showPassword ? 'text' : 'password' " :placeholder="placeholder" class="form-control" :class="size"
                :value="inputValue" @input="updateValue"/>
         <flex v-if="inputValue.length" class="show-password" position="absolute">
@@ -23,11 +26,13 @@
     </template>
 
     <template v-if="type === 'date'">
-      <picker class="form-control"  :type="dateType" :placeholder="placeholder" :class="`${size ?  size : ''}`" v-model:value="inputValue"></picker>
+      <picker class="form-control" :type="dateType" :placeholder="placeholder" :class="`${size ?  size : ''}`"
+              v-model:value="inputValue"></picker>
     </template>
 
     <template v-if="type === 'date-range'">
-      <picker class="form-control" range  :type="dateType" :placeholder="placeholder" :class="`${size ?  size : ''}`" v-model:value="inputValue"></picker>
+      <picker class="form-control" range :type="dateType" :placeholder="placeholder" :class="`${size ?  size : ''}`"
+              v-model:value="inputValue"></picker>
     </template>
 
 
@@ -39,7 +44,10 @@
 
     <template v-if="type === 'number'">
       <div class="input-number">
-      <input :placeholder="placeholder" class="form-control" :class="size" type="number" :value="inputValue" @input="updateValue" />
+        <input
+             :placeholder="placeholder" class="form-control"
+            :class="size" type="number"
+            :value="inputValue" @input="updateValue"/>
         <div class="number-icon" :class="size">
           <a href="#" @click.prevent="incrementValue"><i class="ri-arrow-up-s-line"></i></a>
           <a href="#" @click.prevent="decrementValue"><i class="ri-arrow-down-s-line"></i></a>
@@ -49,59 +57,53 @@
 
 
     <template v-if="type === 'range'">
-      <div class="range-input is-ltr">
-        <input :min="rangeMin" :max="rangeMax" :step="rangeStep" type="range" :value="inputValue" @input="updateValue" />
-        <flex content="start" gap="5" >
+      <flex class="range-input is-ltr" fill>
+        <input :min="rangeMin" :max="rangeMax" :step="rangeStep" type="range" :value="inputValue" @input="updateValue"/>
+        <flex content="start" gap="5" fill>
           <flex fill content="start" class="range-bar">
-            <div class="range-progress"  :style="`background: var(--${rangeColor});  width: ${inputValue}%`" >
-              <span class="grip"  :style="`border-color: var(--${rangeColor});`"  ></span>
+            <div class="range-progress" :style="`background: var(--${rangeColor});  width: ${inputValue}%`">
+              <span class="grip" :style="`border-color: var(--${rangeColor});`"></span>
             </div>
           </flex>
-          <flex v-if="rangePercentage" width="50px" items="center">
-            {{inputValue ? inputValue  : "0"}}%
+          <flex v-if="rangePercentage" width="30px" items="center" content="end">
+            {{ inputValue ? inputValue : "0" }}%
           </flex>
         </flex>
 
-      </div>
+      </flex>
     </template>
 
     <template v-if="type === 'radio'">
 
       <flex :gap="orient === 'vertical' ? '' : '20'" :direction="orient === 'vertical' ? 'column' : 'row'  ">
 
-        <flex gap="5" v-for="(option, index) in options">
-          <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="radio" :value="option" :checked="value === option" @change="updateValue"/>
+        <flex items="center" gap="5" v-for="(option, index) in options" :key="index+'radio'">
+          <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="radio" :value="option"
+                 :checked="value === option" @change="updateValue"/>
           <label :for="`${dataGroup}_${index}`">{{ option }}</label>
         </flex>
       </flex>
     </template>
-
 
 
     <template v-if="type === 'checkbox'">
 
       <flex :gap="orient === 'vertical' ? '' : '20'" :direction="orient === 'vertical' ? 'column' : 'row'  ">
 
-        <flex gap="5" v-for="(option, index) in options">
-          <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="checkbox" :value="option" :checked="value === option" @change="updateValue"/>
+        <flex items="center" gap="5" v-for="(option, index) in options" :key="index+'check'">
+          <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="checkbox" :value="option"
+                 :checked="value === option" @change="updateValue"/>
           <label :for="`${dataGroup}_${index}`">{{ option }}</label>
         </flex>
       </flex>
     </template>
 
 
-
-<!--    <template v-if="type === 'checkbox'">-->
-<!--      <input type="checkbox" :checked="inputValue" @change="updateValue" />-->
-<!--    </template>-->
-
-
     <template v-if="type === 'switch'">
-      <input
-          type="checkbox"
-          :checked="inputValue"
-          @change="updateValue"
-      />
+      <div class="toggle-btn" :style="[ inputValue ? `background: var(--${switchColor});` : '']"
+           :class="`${inputValue ? 'active' : ''} ${size ? size : ''} `" @click.prevent="toggleSwitch">
+        <span :style="`border-color: var(--light);`"></span>
+      </div>
     </template>
 
 
@@ -114,11 +116,9 @@
 
 <script>
 import Picker from 'vue-datepicker-next';
-import Flex from "@/components/ui/utilities/flex.vue";
 
 export default {
-  components: {Flex, Picker },
-
+  components: {Picker},
   props: {
 
     formStyle: {
@@ -133,7 +133,7 @@ export default {
     dateType: {
       type: String,
       default: "Date"
-     },
+    },
 
     label: {
       type: String,
@@ -147,8 +147,7 @@ export default {
       type: String,
     },
 
-    value: {
-    },
+    value: {},
 
     options: {
       type: Array,
@@ -160,6 +159,13 @@ export default {
       default: false
     },
 
+
+    // switch
+    switchColor: {
+      type: String,
+      default: "primary"
+    },
+
     // input range
     rangeColor: {
       type: String,
@@ -168,7 +174,7 @@ export default {
 
     rangeMin: {
       type: String,
-     },
+    },
 
     rangeMax: {
       type: String,
@@ -183,7 +189,7 @@ export default {
     // radio and checkbox groups
     dataGroup: {
       type: String,
-     },
+    },
 
     orient: {
       type: String,
@@ -197,6 +203,7 @@ export default {
       validationError: '',
       showPassword: false,
       inputValue: this.value,
+      showNumberArrows: false
     };
   },
 
@@ -219,6 +226,12 @@ export default {
       this.inputValue = event.target.value;
       this.$emit('update:value', this.inputValue);
 
+    },
+
+
+    toggleSwitch() {
+      this.inputValue = !this.inputValue
+      this.$emit('update:value', this.inputValue);
     },
 
     togglePasswordVisibility() {

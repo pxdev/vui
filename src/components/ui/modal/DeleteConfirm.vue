@@ -26,7 +26,7 @@
       <p class="tx-12 op-8">you will no longer have access to this {{ record }}</p>
     </div>
     <div class="d-flex gap-15 justify-content-center">
-      <btn type="primary" size="lg" class="pd-x-40" @click="closeModal('confirm')">No</btn>
+      <btn type="default-outline" size="lg" class="pd-x-40" @click="closeModal('confirm')">No</btn>
       <btn type="danger" size="lg" class="pd-x-40" @click="closeModal('confirm')">Yes, Delete</btn>
     </div>
   </div>

@@ -120,6 +120,7 @@
 .btn-default {
   background: var(--light);
   color: var(--font-color-base);
+
   .btn-loading {
     background: var(--light);
   }
@@ -129,6 +130,7 @@
 .btn-default-outline {
   border-color: var(--border-color);
   color: var(--font-color-base);
+
   .btn-loading {
     background: var(--light);
   }
@@ -211,15 +213,18 @@
 .btn-success {
   background: var(--success);
   color: #FFF;
+
   .btn-loading {
     background: var(--success);
     color: var(--light);
   }
 
 }
+
 .btn-success-outline {
   border-color: var(--success);
   color: var(--success);
+
   .btn-loading {
     background: var(--success);
     color: var(--light);
@@ -227,13 +232,14 @@
   }
 
 
-
 }
+
 /** Info  **/
 
 .btn-info {
   background: var(--info);
   color: #FFF;
+
   .btn-loading {
     background: var(--info);
     color: var(--light);
@@ -241,6 +247,7 @@
   }
 
 }
+
 .btn-info-outline {
   border-color: var(--info);
   color: var(--info);
@@ -256,6 +263,7 @@
 .btn-danger {
   background: var(--danger);
   color: #FFF;
+
   .btn-loading {
     background: var(--danger);
     color: var(--light);
@@ -278,6 +286,7 @@
 .btn-gray {
   background: var(--gray);
   color: var(--font-color-base);
+
   .btn-loading {
     background: var(--gray);
     color: var(--light);
@@ -289,6 +298,7 @@
 .btn-gray-outline {
   border-color: var(--gray);
   color: var(--font-color-base);
+
   .btn-loading {
     background: var(--gray);
     color: var(--light);
@@ -320,37 +330,64 @@
 
 
 .toggle-btn {
-  width: 30px;
-  height: 18px;
+  width: 35px;
+  height: 20px;
   background: rgba(0, 0, 0, .2);
   border-radius: 20px;
   position: relative;
   z-index: 1;
   cursor: pointer;
   display: flex;
+  user-select: none;
+
 
   span {
-    width: 14px;
-    height: 14px;
     border-radius: 50%;
     display: block;
-    background: #fff;
     position: absolute;
+    transition: 0.4s all ease-in-out;
+    background: #fff;
+    width: 16px;
+    height: 16px;
     top: 2px;
     left: 3px;
-    transition: 0.2s all ease-in-out;
+
   }
 
   &.active {
-    background: var(--primary);
-
     span {
       background: #FFF;
       right: 3px;
       left: auto;
+
     }
+  }
+
+
+  &.sm {
+    width: 30px;
+    height: 18px;
+
+    span {
+      width: 14px;
+      height: 14px;
+     }
+
 
   }
+
+  &.lg {
+    width: 40px;
+    height: 24px;
+
+    span {
+      width: 20px;
+      height: 20px;
+     }
+
+  }
+
+
 }
 
 

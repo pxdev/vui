@@ -40,7 +40,7 @@
       </svg>
     </a>
 
-    <a href="#" v-if="selectedItems.length > 0" @click.prevent="clear" class="dropdown-clear"> <i class="ri-close-line"></i> </a>
+    <a href="#" v-if="selectedItems.length > 0 && clearable " @click.prevent="clear" class="dropdown-clear"> <i class="ri-close-line"></i> </a>
 
 
     <!-- / dropdown header -->
@@ -106,6 +106,10 @@ export default {
     },
     toggleArrow: {
       type: Boolean
+    },
+    clearable: {
+      type: Boolean,
+      default: true
     }
   },
   data() {

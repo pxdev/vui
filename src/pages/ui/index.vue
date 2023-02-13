@@ -1,19 +1,19 @@
 <template>
   <div>
 
-    <div class="header card">
+    <flex position="sticky" class="header card shadow" style="top: 0; z-index: 10">
       <div class="container d-flex align-items-center justify-content-between">
         <router-link to="/ui" class="tx-16">Vue Starter Ui Kit</router-link>
         <theme-switcher></theme-switcher>
       </div>
 
-    </div>
+    </flex>
 
-    <section class="container d-flex align-items-start gap-30 pd-y-100">
+    <section class="container d-flex align-items-start gap-30 pd-y-50">
 
       <div class="ui-nav card" style="min-width: 290px; position: sticky; top: 0">
         <ul class="tabbed-nav">
-          <li><a class="pd-5 d-flex" href="#DatePicker">Forms</a></li>
+          <li><a class="pd-5 d-flex" href="#Forms">Forms</a></li>
           <li><a class="pd-5 d-flex" href="#Modals">Modals</a></li>
 
           <li><a class="pd-5 d-flex" href="#Tables">Tables</a></li>
@@ -28,56 +28,78 @@
       </div>
       <div class="ui-content">
 
-        <div id="DatePicker" class="card pd-50 gap-20 mg-b-30">
-          <h2 class="mg-b-30">Forms</h2>
-          <grid class="mg-b-30">
-            <grid-col :md="12">
-              <h3 class="mg-b-20">Range Sliders</h3>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="primary" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="secondary" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="danger" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="warning" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="info" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="success" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-          </grid>
+        <div id="Forms" class="card pd-50 gap-20 mg-b-30">
 
+          <flex items="center" content="between" class="mg-b-20">
+            <h3 >Input Fields</h3>
+            <div>
+              <dropdown
+                  v-model="formStyle"
+                  class=" lg"
+                  :clearable="false"
+                  :toggle-arrow="true"
+                  placeholder="Form Style"
+                  :items="formStyles"
+              ></dropdown>
+            </div>
+          </flex>
 
           <grid>
             <grid-col :md="6" class="mg-b-20">
-              <h3 class="mg-b-20">Input Fields</h3>
-              <form-input size="sm" class="mg-b-20" required type="text" label="Form input text" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="password" label="Form input number" :value="inputValue" placeholder="Enter your password" @update:value="updateInputValue"/>
-              <form-input size="sm" class="mg-b-20" type="number" label="Form input number" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="textarea" label="Form textarea" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input size="lg" class="mg-b-20" type="radio" orient="horizontal" data-group="R1" label="Form Check horizontal" :options="inputOptions" @update:value="updateInputValue"/>
+              <form-input :form-style="formStyle" size="sm" class="mg-b-20" required type="text" label="Form input text" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input size="lg" class="mg-b-20" type="radio" orient="vertical" data-group="R2" label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="password" label="Form input password" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input size="lg" class="mg-b-20" type="checkbox" orient="vertical" data-group="c1" label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" label="Form input date" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date-range"  label="Form input date range" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="month" label="Form input date month" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="year" label="Form input date year" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="time" label="Form input date year" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="number" label="Form input number" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="textarea" label="Form textarea" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+            </grid-col>
+            <grid-col :md="6" class="mg-b-20">
+
+              <form-input :form-style="formStyle" range-percentage label="Form range percentage" class="mg-b-20" type="range" range-color="primary" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" range-percentage label="Form range percentage" class="mg-b-20" type="range" range-color="danger" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="radio" orient="horizontal" data-group="R1"
+                          label="Form Check horizontal" :options="inputOptions" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="radio" orient="vertical" data-group="R2"
+                          label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="checkbox" orient="vertical" data-group="c1"
+                          label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" label="Form input switch normal" switch-color="danger" size="" type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
+              <form-input :form-style="formStyle" label="Form input switch large" switch-color="danger" size="lg" type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" label="Form input switch small" switch-color="primary" size="sm" type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
+
 
             </grid-col>
           </grid>
-
 
         </div>
 
@@ -732,16 +754,20 @@
 <script>
 
 import {openModal, closeModal} from '@/components/ui/modal/modal';
+import Dropdown from "@/components/ui/dropdown/Dropdown.vue";
 
 
 export default {
   name: "index",
+  components: {Dropdown},
 
   data() {
 
     return {
+      formStyle: '',
 
       inputValue: '',
+      checkValue: false,
       inputOptions: ['Option 1', 'Option 2', 'Option 3'],
 
 
@@ -901,6 +927,13 @@ export default {
       selected: null,
       multiSelected: null,
 
+
+      formStyles: [
+        {name: 'normal'},
+        {name: 'underline'},
+        {name: 'floating-label'},
+       ],
+
       links: [
         {name: 'Ahmed', icon: 'ri-map-pin-line'},
         {name: 'Ali', icon: 'ri-rocket-line'},
@@ -938,6 +971,7 @@ export default {
   methods: {
     openModal,
     closeModal,
+
 
     setLoading() {
       this.isLoading = !this.isLoading

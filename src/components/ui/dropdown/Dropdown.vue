@@ -14,7 +14,7 @@
     </a>
 
 
-    <a href="#" v-if="selectedItem" @click.prevent="clear" class="dropdown-clear"> <i class="ri-close-line"></i> </a>
+    <a href="#" v-if="selectedItem && clearable" @click.prevent="clear" class="dropdown-clear"> <i class="ri-close-line"></i> </a>
 
     <!-- / dropdown header -->
     <div v-if="dropdownOpen" class="dropdown-menu shadow">
@@ -67,6 +67,10 @@ export default {
     },
     toggleArrow: {
       type: Boolean
+    },
+    clearable: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
