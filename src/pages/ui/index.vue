@@ -32,9 +32,9 @@
         <div id="Carousel" class="card pd-50 gap-20 mg-b-30">
           <h3 >Carousel</h3>
 
-        <carousel>
-          <flex v-for="n in 10" :key="n" class="slide" style="width: 100%; flex-shrink: 0">
-            <img style="width: 100%;" src="https://cdn.openai.com/API/images/guides/image_variation_output.webp" />
+        <carousel  :gap-size="20">
+          <flex fill v-for="n in 10" :key="n" class="slide card shadow">
+             {{n}}
           </flex>
         </carousel>
 

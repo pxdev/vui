@@ -1,30 +1,47 @@
 <template>
 
-  <p>{{ currentSlide }}</p>
-  <p>{{ slidesCount }}</p>
+  {{slideSize}}
+
 
   <div class="carousel">
-    <div class="carousel-wrapper" ref="carouselWrapper" :style="{ transform: 'translateX(' + (-100 * currentSlide) + '%)' }">
+    <div class="carousel-wrapper" ref="carouselWrapper" :style="{ gap:gapSize + 'px',  transform: 'translateX(' + ((-slideSize - gapSize) * currentSlide) + 'px' }">
       <slot></slot>
     </div>
-    <div class="carousel-nav">
-      <button @click="prevSlide">&lt;</button>
-      <button @click="nextSlide">&gt;</button>
+    <div class="slider-counter">
+      <p><span class="count-current">{{currentSlide + 1}}</span><span class="count-separator">/</span><span class="count-total">{{ slidesCount }}</span></p>
     </div>
+
+    <div class="carousel-nav">
+      <btn icon="ri-arrow-left-s-line" @click="prevSlide"></btn>
+      <btn icon="ri-arrow-right-s-line" @click="nextSlide"></btn>
+    </div>
+
   </div>
 </template>
 
 <script>
 export default {
-  data() {
+  props: {
+    gapSize: {
+      type: Number,
+    },
+    stepSize: {
+      type: Number,
+    },
+  },
+
+    data() {
     return {
       currentSlide: 0,
-      slidesCount: 0
+      slidesCount: 0,
+      slideSize : 0
+
     };
   },
   mounted() {
-    this.slidesCount = this.$refs.carouselWrapper.children.length
-  },
+    this.stepSize ? this.slideSize = this.stepSize : this.slideSize = this.$refs.carouselWrapper.clientWidth
+    this.slidesCount = this.$refs.carouselWrapper.children.length;
+   },
   methods: {
     nextSlide() {
       if (this.currentSlide === this.slidesCount - 1) {
@@ -42,15 +59,4 @@ export default {
 };
 </script>
 
-<style>
-.carousel {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
 
-.carousel-wrapper {
-  display: flex;
-  transition: transform 0.5s;
-}
-</style>

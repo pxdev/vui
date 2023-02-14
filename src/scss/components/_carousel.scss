@@ -1,0 +1,14 @@
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.5s;
+
+    .slider {
+        flex-shrink: 0;
+    }
+}
