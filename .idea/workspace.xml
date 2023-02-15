@@ -35,6 +35,9 @@
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -48,6 +51,7 @@
       <option name="presentableId" value="Default" />
       <updated>1675976039363</updated>
       <workItem from="1675976040516" duration="2676000" />
+      <workItem from="1676068089479" duration="2475000" />
     </task>
     <servers />
   </component>
