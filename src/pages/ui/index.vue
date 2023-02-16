@@ -11,7 +11,7 @@
 
     <section class="container d-flex align-items-start gap-30 pd-y-50">
 
-      <div class="ui-nav card" style="min-width: 290px; position: sticky; top: 0">
+      <div class="ui-nav card" style="min-width: 290px; position: sticky; top: 110px">
         <ul class="tabbed-nav">
 
           <li><a class="pd-5 d-flex" href="#Carousel">Carousel</a></li>
@@ -30,20 +30,21 @@
       <div class="ui-content">
 
         <div id="Carousel" class="card pd-50 gap-20 mg-b-30">
-          <h3 >Carousel</h3>
+          <h3 class="mg-b-30">Carousel</h3>
 
-        <carousel  :gap-size="20">
-          <flex fill v-for="n in 10" :key="n" class="slide card shadow">
-             {{n}}
-          </flex>
-        </carousel>
-
+          <carousel :slides="slides" class="rounded">
+            <template #slide="slide">
+              <flex fill class="one-img-slide">
+                <img :src="slide.download_url" alt="">
+              </flex>
+            </template>
+          </carousel>
         </div>
 
         <div id="Forms" class="card pd-50 gap-20 mg-b-30">
 
           <flex items="center" content="between" class="mg-b-20">
-            <h3 >Input Fields</h3>
+            <h3>Input Fields</h3>
             <div>
               <dropdown
                   v-model="formStyle"
@@ -59,55 +60,77 @@
           <grid>
             <grid-col :md="6" class="mg-b-20">
 
-              <form-input :form-style="formStyle" size="sm" class="mg-b-20" required type="text" label="Form input text" :value="inputValue"
+              <form-input :form-style="formStyle" size="sm" class="mg-b-20"  type="textarea" :min-textarea-height="80" label="Form input text"
+                          :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="password" label="Form input password" :value="inputValue"
+
+              <form-input :form-style="formStyle" size="sm" class="mg-b-20" required type="text" label="Form input text"
+                          :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" label="Form input date" :value="inputValue"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="password" label="Form input password"
+                          :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date-range"  label="Form input date range" :value="inputValue"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" label="Form input date"
+                          :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="month" label="Form input date month" :value="inputValue"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date-range"
+                          label="Form input date range" :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="year" label="Form input date year" :value="inputValue"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="month"
+                          label="Form input date month" :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="time" label="Form input date year" :value="inputValue"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="year"
+                          label="Form input date year" :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="number" label="Form input number" :value="inputValue"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="date" date-type="time"
+                          label="Form input date year" :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="textarea" label="Form textarea" :value="inputValue"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="number" label="Form input number"
+                          :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="textarea" label="Form textarea"
+                          :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
             </grid-col>
             <grid-col :md="6" class="mg-b-20">
 
-              <form-input :form-style="formStyle" range-percentage label="Form range percentage" class="mg-b-20" type="range" range-color="primary" :value="inputValue"
+              <form-input :form-style="formStyle" range-percentage label="Form range percentage" class="mg-b-20"
+                          type="range" range-color="primary" :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" range-percentage label="Form range percentage" class="mg-b-20" type="range" range-color="danger" :value="inputValue"
+              <form-input :form-style="formStyle" range-percentage label="Form range percentage" class="mg-b-20"
+                          type="range" range-color="danger" :value="inputValue"
                           placeholder="Enter your value" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="radio" orient="horizontal" data-group="R1"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="radio" orient="horizontal"
+                          data-group="R1"
                           label="Form Check horizontal" :options="inputOptions" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="radio" orient="vertical" data-group="R2"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="radio" orient="vertical"
+                          data-group="R2"
                           label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="checkbox" orient="vertical" data-group="c1"
+              <form-input :form-style="formStyle" size="lg" class="mg-b-20" type="checkbox" orient="vertical"
+                          data-group="c1"
                           label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" label="Form input switch normal" switch-color="danger" size="" type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
-              <form-input :form-style="formStyle" label="Form input switch large" switch-color="danger" size="lg" type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
+              <form-input :form-style="formStyle" label="Form input switch normal" switch-color="danger" size=""
+                          type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
+              <form-input :form-style="formStyle" label="Form input switch large" switch-color="danger" size="lg"
+                          type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
 
-              <form-input :form-style="formStyle" label="Form input switch small" switch-color="primary" size="sm" type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
+              <form-input :form-style="formStyle" label="Form input switch small" switch-color="primary" size="sm"
+                          type="switch" class="mg-b-20" :value="checkValue" @update:value="updateInputValue"/>
 
 
             </grid-col>
@@ -117,6 +140,7 @@
 
         <div id="Modals" class="card pd-50 gap-20 mg-b-30">
           <h2 class="mg-b-30">Modals</h2>
+
 
           <modal id="confirm" size="sm">
             <delete-confirm record="Profile"></delete-confirm>
@@ -766,16 +790,16 @@
 <script>
 
 import {openModal, closeModal} from '@/components/ui/modal/modal';
-import Dropdown from "@/components/ui/dropdown/Dropdown.vue";
 
 
 export default {
   name: "index",
-  components: {Dropdown},
 
   data() {
 
     return {
+      message:null,
+
       formStyle: '',
 
       inputValue: '',
@@ -944,7 +968,7 @@ export default {
         {name: 'normal'},
         {name: 'underline'},
         {name: 'floating-label'},
-       ],
+      ],
 
       links: [
         {name: 'Ahmed', icon: 'ri-map-pin-line'},
@@ -957,6 +981,18 @@ export default {
         {name: 'Sara', icon: 'ri-headphone-line'},
         {name: 'Salma', icon: 'ri-user-add-line'},
       ],
+      slides: [
+        {
+          "download_url": "https://picsum.photos/seed/picsum/1024/300"
+        },
+        {
+          "download_url": "https://picsum.photos/seed/picsum/1024/300"
+        },
+        {
+          "download_url": "https://picsum.photos/seed/picsum/1024/300"
+        },
+      ],
+
       items: [
         {label: 'Home', icon: 'ri-mail-send-line'},
         {label: 'Calendar', icon: 'ri-calendar-2-line'},

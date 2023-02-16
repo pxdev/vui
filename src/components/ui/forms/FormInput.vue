@@ -37,15 +37,15 @@
 
 
     <template v-if="type === 'textarea'">
-      <textarea :placeholder="placeholder" class="form-textarea" :class="size" :value="inputValue"
-                @input="updateValue"/>
+      <textarea ref="textArea" :placeholder="placeholder" class="form-textarea" :class="size" :value="inputValue"
+                @input="updateValue" :style="{ height: `${textareaHeight}px` }"/>
     </template>
 
 
     <template v-if="type === 'number'">
       <div class="input-number">
         <input
-             :placeholder="placeholder" class="form-control"
+            :placeholder="placeholder" class="form-control"
             :class="size" type="number"
             :value="inputValue" @input="updateValue"/>
         <div class="number-icon" :class="size">
@@ -197,13 +197,18 @@ export default {
     },
 
 
+    minTextareaHeight: {
+      type: Number,
+    },
+
   },
   data() {
     return {
       validationError: '',
       showPassword: false,
       inputValue: this.value,
-      showNumberArrows: false
+      showNumberArrows: false,
+      textareaHeight: this.minTextareaHeight
     };
   },
 
