@@ -1,34 +1,30 @@
 {
-    "version": "4.0.1",
-    "license": "MIT",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "serve": "vite preview",
-        "up": "taze major -I"
-    },
-    "dependencies": {
-        "axios": "^1.2.4",
-        "eslint-config-prettier": "^8.5.0",
-        "eslint-plugin-vue": "^9.8.0",
-        "prettier": "^2.8.0",
-        "remixicon": "^2.5.0",
-        "sass": "^1.49.7",
-        "vue": "^3.2.45",
-        "vue-custom-scrollbar": "^1.4.4",
-        "vue-datepicker-next": "^1.0.2",
-        "vue-meta": "3.0.0-alpha.10",
-        "vue-router": "4.1.6",
-        "vuex": "^4.0.2"
-    },
-    "devDependencies": {
-        "@vitejs/plugin-vue": "^3.2.0",
-        "@vue/compiler-sfc": "^3.2.45",
-        "autoprefixer": "^10.4.13",
-        "sass-loader": "^10.1.0",
-        "unplugin-vue-components": "^0.22.11",
-        "vite": "^3.2.4",
-        "vite-plugin-pages": "^0.27.1",
-        "vite-plugin-vue-layouts": "^0.7.0"
-    }
+  "name": "nuxt3-starter",
+  "description": "A better nuxt3 starter template",
+  "private": false,
+  "scripts": {
+    "dev": "nuxt dev --port 6636",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "serve": "esno .output/server/index.mjs",
+    "p:ish": "pnpm install --shamefully-hoist",
+    "p:up": "pnpm up"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.1.143",
+    "@intlify/nuxt3": "^0.2.4",
+    "@pinia/nuxt": "^0.4.5",
+    "@vueuse/nuxt": "^9.6.0",
+    "nuxt": "^3.0.0",
+    "sass": "^1.58.3",
+    "vue-custom-scrollbar": "^1.4.4",
+    "vue-datepicker-next": "^1.0.2"
+  },
+  "dependencies": {
+    "pinia": "^2.0.26",
+    "remixicon": "^2.5.0",
+    "sass-loader": "^10.4.1"
+  }
 }
