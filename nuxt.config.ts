@@ -3,7 +3,7 @@ import {defineNuxtConfig} from 'nuxt/config'
 export default defineNuxtConfig({
     app: {
         head: {
-            title: 'A Better Nuxt 3 Starter',
+            title: 'Vui Starter',
             link: [{rel: 'icon', type: 'image/*', href: '/favicon.svg'}]
         }
     },
@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt',
         '@vueuse/nuxt',
+        'nuxt-purgecss',
         [
             '@intlify/nuxt3',
             {

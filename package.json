@@ -18,6 +18,7 @@
     "@pinia/nuxt": "^0.4.5",
     "@vueuse/nuxt": "^9.6.0",
     "nuxt": "^3.0.0",
+    "nuxt-purgecss": "^2.0.0",
     "sass": "^1.58.3",
     "vue-custom-scrollbar": "^1.4.4",
     "vue-datepicker-next": "^1.0.2"
