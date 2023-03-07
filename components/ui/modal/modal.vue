@@ -1,7 +1,7 @@
 <template>
   <transition name="slide-fade">
     <div
-        v-show="visible"
+        v-if="visible"
         v-bind="$attrs"
         :id="name"
         class="modal"
@@ -11,20 +11,16 @@
         :aria-labelledby="`${name}-header`"
     >
 
-      <div v-show="visible" ref="modalRef" class="modal-dialog">
+      <div v-show="visible" class="modal-dialog" :class="size">
         <div class="modal-content">
-          <div v-if="$slots.header" :id="`${name}-header`"
-               class="modal-header modal-header d-flex justify-content-between align-items-center">
-            <h3>
-              <slot name="header"/>
-            </h3>
-            <a href="#" v-if="showClose"
-               aria-hidden="true"
-               :aria-label="closeAriaLabel"
-               @click="hide"
-               class="close-btn"> &#x2715; </a>
 
+          <div v-if="title" class="modal-header d-flex justify-content-between align-items-center">
+            <slot name="modal-header">
+              <h3 >{{ title }} <span class="op-7" v-if="subtitle">{{ subtitle }}</span></h3>
+            </slot>
+            <a href="#" @click.prevent="hide" class="close-btn"> &#x2715; </a>
           </div>
+
           <div v-if="$slots.default" class="modal-body">
             <!-- @slot default Slot for modal body content -->
             <slot/>
@@ -36,43 +32,36 @@
         </div>
       </div>
 
+      <div v-if="visible" class="close-layer" @click.prevent="hide"></div>
     </div>
   </transition>
+  <transition name="fade">
+    <div v-show="visible" v-if="!disableBackDrop" class="modal-backdrop"></div>
+  </transition>
+
 </template>
 
-<script lang="ts">
-import {defineComponent, ref, toRef, watch} from 'vue';
+<script>
+import {ref, watch} from 'vue';
 
-export default defineComponent({
+export default {
+  emits: [
+    'update:modelValue'
+  ],
   props: {
-    closeOnPressEscape: {
+    disableBackDrop: {
       type: Boolean,
-      default: true
-    },
-    closeAriaLabel: {
-      type: String,
-      default: 'Close'
-    },
-    color: {
-      type: String,
-      default: undefined
-    },
-
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-
-    hideOnClickOutside: {
-      type: Boolean,
-      default: true
     },
 
     name: {
       type: String,
-
     },
-
+    title: {
+      type: String,
+    },
+    subtitle: {
+      type: String,
+    },
     showClose: {
       type: Boolean,
       default: true
@@ -80,7 +69,6 @@ export default defineComponent({
 
     size: {
       type: String,
-      default: undefined
     },
 
     modelValue: {
@@ -89,57 +77,27 @@ export default defineComponent({
     },
 
   },
-  emits: [
-    'update:modelValue'
-  ],
-
   setup(props, {emit}) {
 
     const visible = ref(props.modelValue);
 
-    const closeOnPressEscape = toRef(props, 'closeOnPressEscape');
-    watch(
-        () => props.modelValue,
-        (value) => {
-          if (value) {
-            show();
-          } else {
-            hide();
-          }
-        }
-    );
+    watch(() => props.modelValue, (value) => {
+      value ? show() : hide()
+    })
 
     function show() {
-      if (props.disabled) {
-        return;
-      }
       visible.value = true;
       emit('update:modelValue', true);
-
     }
 
     function hide() {
-      if (props.disabled) {
-        return;
-      }
       visible.value = false;
       emit('update:modelValue', false);
-
     }
 
-    function onClickOutside() {
-      if (!props.hideOnClickOutside) {
-        return;
-      }
-      hide();
-    }
-
-    return {
-      visible,
-      hide
-    };
+    return {visible, hide}
   }
-});
+};
 </script>
 
 

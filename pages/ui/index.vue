@@ -2,23 +2,16 @@
 
   <div>
 
+    {{ visible }}
     <theme-switcher></theme-switcher>
 
-    <modal></modal>
 
-    <button @click="visible = true">
-      Show Modal
-    </button>
+    <button @click="visible = true">Show Modal</button>
+    <modal title="test" size="" v-model="visible">test</modal>
 
-    <modal v-model="visible">
-      <template #header>
-        Modal Header
-      </template>
-      This is the modal body. Useful information goes here.
-      <template #footer>
-        Modal Footer
-      </template>
-    </modal>
+    <button @click="isVisible = true">Show Modal</button>
+    <modal title="tests" size="" v-model="isVisible">test</modal>
+
 
 
   </div>
@@ -26,17 +19,22 @@
 </template>
 
 <script>
-import Modal from "~/components/ui/modal/modal.vue";
+import {ref} from 'vue';
 
-definePageMeta({ layout: 'ui' })
+definePageMeta({layout: 'ui'})
 export default {
   name: "index",
-  components: {Modal},
-  data(){
+
+  setup() {
+
+    const visible = ref(false);
+    const isVisible = ref(false);
+
     return {
-      visible : false
+      visible, isVisible
     }
   }
+
 
 }
 </script>
