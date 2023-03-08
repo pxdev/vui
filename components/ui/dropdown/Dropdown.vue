@@ -1,8 +1,9 @@
 <template>
   <div class="dropdown search-dropdown" v-if="loading">
-    <div class="dropdown-btn gap-5 d-flex align-items-center"> <i class="ri-loader-5-line spin tx-20"></i>Loading...</div>
+    <div class="dropdown-btn gap-5 d-flex align-items-center"><i class="ri-loader-5-line spin tx-20"></i>Loading...
+    </div>
   </div>
-  <div v-else  class="dropdown search-dropdown" ref="searchDropdown" :class="{'shown': dropdownOpen}">
+  <div v-else class="dropdown search-dropdown" ref="dropdownElement" :class="{'shown': dropdownOpen}">
 
     <a href="#" class="dropdown-btn justify-content-between d-flex align-items-center" @click.prevent="toggleDropdown">
       <span>{{ selectedItem ? selectedItem : placeholder }}</span>
@@ -21,9 +22,9 @@
 
 
       <vue-custom-scrollbar class="dropdown-scroll" :settings="scrollSettings">
-        <slot name="dropdown" >
+        <slot name="dropdown">
           <div v-if="items">
-            <a href="#" v-if="items"  class="menu-item d-flex"
+            <a href="#" v-if="items" class="menu-item d-flex"
                v-for="item in items"
                :class="{'active': selectedItem === item.name}"
                :key="item" @click.prevent="selectItem(item)">
@@ -35,11 +36,10 @@
             <div class="tx-center pd-5" v-else>
               Nothing Found
             </div>
-         </div>
+          </div>
         </slot>
       </vue-custom-scrollbar>
       <!-- / dropdown items -->
-
     </div>
 
   </div>
@@ -47,6 +47,7 @@
 
 <script>
 import vueCustomScrollbar from 'vue-custom-scrollbar/src/vue-scrollbar.vue'
+import {ref, onMounted, onBeforeUnmount} from 'vue'
 
 export default {
   name: "Dropdown",
@@ -58,10 +59,10 @@ export default {
     modelValue: null,
     loading: {
       type: Boolean,
-     },
+    },
     items: {
       type: Array,
-     },
+    },
     placeholder: {
       type: String
     },
@@ -73,53 +74,57 @@ export default {
       default: true
     }
   },
-  data() {
+
+  setup(props, {emit}) {
+
+    const dropdownElement = ref(null)
+    const selectedItem = ref('')
+    const dropdownOpen = ref(false)
+
+
+    const scrollSettings = {
+      suppressScrollY: false,
+      suppressScrollX: false,
+      wheelPropagation: false,
+      wheelSpeed: 1,
+      swipeEasing: true
+    }
+
+    const clear = () => {
+      selectedItem.value = ""
+    }
+
+    const toggleDropdown = () => {
+      dropdownOpen.value = !dropdownOpen.value;
+    }
+    const selectItem = (item) => {
+      if (props.items.length > 0) {
+        selectedItem.value = item.name;
+        dropdownOpen.value = false;
+        emit('update:modelValue', item.name);
+      }
+    }
+
+    const handleClickOutside = (e) => {
+        if (!dropdownElement.value.contains(e.target) && dropdownOpen) {
+          dropdownOpen.value = false;
+        }
+    }
+
+    onMounted(()=>{
+      document.addEventListener("click", handleClickOutside);
+    })
+
+    onBeforeUnmount(()=> {
+      document.removeEventListener("click", handleClickOutside);
+    })
+
+
     return {
-      selectedItem: "",
-      dropdownOpen: false,
-
-      scrollSettings: {
-        suppressScrollY: false,
-        suppressScrollX: false,
-        wheelPropagation: false,
-        wheelSpeed: 1,
-        swipeEasing: true
-      }
-
-    };
-  },
-  computed: {
-
-  },
-  methods: {
-
-    clear() {
-      this.selectedItem = ""
-    },
-
-    toggleDropdown() {
-      this.dropdownOpen = !this.dropdownOpen;
-    },
-    selectItem(item) {
-      if (this.items.length > 0 ){
-        this.selectedItem = item.name;
-        this.dropdownOpen = false;
-        this.$emit('update:modelValue', item.name);
-      }
-    },
-    handleClickOutside(e) {
-      if (!this.$el.contains(e.target)) {
-        this.dropdownOpen = false;
-      }
+      selectedItem, dropdownOpen, scrollSettings, clear, toggleDropdown, selectItem, dropdownElement
     }
   },
 
-  mounted() {
-    document.addEventListener("click", this.handleClickOutside);
-  },
-  beforeDestroy() {
-    document.removeEventListener("click", this.handleClickOutside);
-  },
 
 };
 </script>
