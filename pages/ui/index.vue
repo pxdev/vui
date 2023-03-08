@@ -2,21 +2,16 @@
 
   <div>
 
+    <demo></demo>
+
      <theme-switcher></theme-switcher>
 
 
     <btn @click="toggleLocales">Toggle</btn>
 
-    <button @click="modalVisible = true">Show Modal</button>
+    <button  @click="modalVisible = true">Show Modal</button>
     <modal title="test" size="" v-model="modalVisible">test</modal>
 
-    <search-dropdown
-        v-model="selected"
-        class="form-dropdown lg"
-        :toggle-arrow="true"
-        placeholder="Dropdown Placeholder"
-        :items="links"
-    ></search-dropdown>
 
     <dropdown
         v-model="selected"
@@ -26,7 +21,6 @@
         :items="links"
     ></dropdown>
 
-    {{ t('menu.home') }}
 
   </div>
 
@@ -45,7 +39,6 @@ export default {
     const { t, locale, availableLocales } = useI18n()
 
     const toggleLocales = () => {
-      // change to some real logic
       const locales = availableLocales
       console.log(locale.value)
       locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]

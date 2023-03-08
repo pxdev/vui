@@ -1,4 +1,5 @@
 <template>
+  <teleport to="body">
   <transition name="slide-fade">
     <div
         v-if="visible"
@@ -7,7 +8,6 @@
         class="modal"
         role="dialog"
         aria-modal="true"
-        :aria-hidden="visible ? 'false' : 'true'"
         :aria-labelledby="`${name}-header`"
     >
 
@@ -38,7 +38,7 @@
   <transition name="fade">
     <div v-show="visible" v-if="!disableBackDrop" class="modal-backdrop"></div>
   </transition>
-
+  </teleport>
 </template>
 
 <script>
