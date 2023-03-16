@@ -1,13 +1,16 @@
 <template>
-<div>
-  ui
-  <slot />
-</div>
+  <div>
+     <slot/>
+  </div>
 </template>
 
 <script>
+
 export default {
-  name: "ui"
+  name: "ui",
+  setup() {
+
+  }
 }
 </script>
 

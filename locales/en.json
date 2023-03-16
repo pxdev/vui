@@ -1,3 +1,5 @@
 {
-  "hello": "Hello, {name}!"
+  "Loading": "Loading",
+  "No matching results found for your query" : "No matching results found for your query"
+
 }

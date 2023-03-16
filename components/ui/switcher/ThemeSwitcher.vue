@@ -13,7 +13,6 @@
 
 <script>
 
-import { isDark, toggleDark } from '@/composables/dark'
 
 export default {
 

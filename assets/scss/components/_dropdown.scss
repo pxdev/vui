@@ -5,7 +5,6 @@
   &.form-dropdown {
     display: flex;
     @extend %form-control;
-
     height: $normal-form-size;
 
     &.sm {
@@ -97,6 +96,7 @@
     min-width: 150px;
     width: 100%;
     margin: 2px 0;
+    padding: 2px;
     @include rtl(inset, 100% 0 auto auto, 100% auto auto 0);
 
 
@@ -124,7 +124,7 @@
       }
 
       &.selected {
-        background: var(--gray);
+        color: var(--primary);
       }
 
     }
@@ -152,10 +152,6 @@
 
 .toggle-arrow {
   transition: 0.4s all ease-out;
-  width: 16px;
-  height: 16px;
-  fill: var(--font-color-base);
-
 }
 
 .shown {
@@ -175,9 +171,14 @@
     max-height: 230px;
   }
 
+  .dropdown-searchbar{
+    padding: 10px;
+    background: var(--gray);
+    margin-bottom: 2px;
+  }
   .search {
-    margin: 15px;
-    position: relative;
+     position: relative;
+
 
     i {
       position: absolute;
@@ -189,12 +190,8 @@
     }
 
     input {
-      border: 1px solid var(--border-color);
-      font-size: 14px;
-      padding: 10px 30px;
-      width: 100%;
-      border-radius: $normal-radius;
-      background: var(--light);
+      @extend %form-control;
+      text-indent:20px;
 
 
       &:focus {
