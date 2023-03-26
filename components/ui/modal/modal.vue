@@ -43,6 +43,7 @@
 
 <script>
 import {ref, watch} from 'vue';
+import {useMagicKeys} from "@vueuse/core";
 
 export default {
   emits: [
@@ -77,12 +78,21 @@ export default {
     },
 
   },
+
+
+
   setup(props, {emit}) {
 
     const visible = ref(props.modelValue);
+    const {Escape} = useMagicKeys()
 
     watch(() => props.modelValue, (value) => {
       value ? show() : hide()
+    })
+
+    watchEffect(() => {
+      if (Escape.value)
+        visible.value = false
     })
 
     function show() {

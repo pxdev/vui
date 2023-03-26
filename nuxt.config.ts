@@ -35,7 +35,14 @@ export default defineNuxtConfig({
         ]
     ],
 
+    build: {
+        transpile: ['@vuepic/vue-datepicker']
+    },
+
+
+
     vite: {
-        plugins: []
+        plugins: [
+        ],
     }
 })

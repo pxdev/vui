@@ -1,58 +1,61 @@
-$namespace: 'mx'; // change the 'mx' to 'xmx'. then <date-picker prefix-class="xmx" />
-
-$default-color: var(--font-color-base);
-$primary-color: var(--primary);
-$calendar-hover-color: var(--light);
-$today-color:  var(--primary);
-$time-hover-color: var(--light);
-
-$calendar-hover-background-color: var(--primary);
-$calendar-in-range-background-color: var(--gray);
-$time-hover-background-color: var(--primary);
-
-@import './vue-datepicker-next/scss/index.scss';
+@import '@vuepic/vue-datepicker/src/VueDatePicker/style/main.scss';
 
 
-.#{$namespace}-datepicker svg {
+.date-picker {
+  .dp__input {
+    @extend %form-control;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  &.sm {
+    .dp__input {
+      min-height: $small-form-size;
+    }
+  }
+  &.lg {
+    .dp__input {
+      min-height: $large-form-size;
+    }
+  }
+
+
+
+
+}
+
+.dp__menu  {
+  font-size: $font-size-base;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+  padding: 10px;
+}
+
+.dp__input_icon {
   fill: var(--font-color-base);
 }
 
-.#{$namespace}-datepicker-main{
-  background: var(--light);
-}
-.#{$namespace}-input {
-  border: none;
-  box-shadow: none;
-  height: 28px;
-  background: none;
-  font-size: 12px;
-  padding-left: 0;
-  padding-right: 0;
-
-}
-
-.#{$namespace}-datepicker {
-  width: 100%;
-  padding-left: 0;
-  padding-right: 0;
-}
-.modal{
-  .#{$namespace}-calendar {
-    width: auto;
+.dark{
+  .dp__theme_light {
+    --dp-background-color: var(--body-bg);
+    --dp-text-color: var(--font-color-base);
+    --dp-hover-color: #484848;
+    --dp-hover-text-color: var(--font-color-base);
+    --dp-hover-icon-color: #959595;
+    --dp-primary-color: #005cb2;
+    --dp-primary-text-color: var(--font-color-base);
+    --dp-secondary-color: #a9a9a9;
+    --dp-border-color: #2d2d2d;
+    --dp-menu-border-color: #2d2d2d;
+    --dp-border-color-hover: #aaaeb7;
+    --dp-disabled-color: #737373;
+    --dp-scroll-bar-background: #212121;
+    --dp-scroll-bar-color: #484848;
+    --dp-success-color: #00701a;
+    --dp-success-color-disabled: #428f59;
+    --dp-icon-color: #959595;
+    --dp-danger-color: #e53935;
+    --dp-highlight-color: rgba(0, 92, 178, 0.2);
   }
 }
 
-.#{$namespace}-datepicker-main {
-  background-color: var(--light);
-  border: 1px solid var(--border-color);
-}
-
-
-.#{$namespace}-datepicker-popup {
-   box-shadow: 0 6px 32px rgba(0, 0, 0, 0.1);
- }
-
-.#{$namespace}-icon-calendar,
-.#{$namespace}-icon-clear {
-   right: 3px;
- }

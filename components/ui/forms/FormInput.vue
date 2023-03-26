@@ -24,22 +24,27 @@
       </flex>
 
     </template>
+    <!-- / text and password -->
+
 
     <template v-if="type === 'date'">
-      <picker class="form-control" :type="dateType" :placeholder="placeholder" :class="`${size ?  size : ''}`"
-              v-model:value="inputValue"></picker>
+      <template v-if="dateType">
+        <VueDatePicker class="date-picker" :enable-time-picker="false" range :placeholder="placeholder" :class="`${size ?  size : ''}`"
+                       v-model="inputValue"></VueDatePicker>
+      </template>
+      <template v-else>
+        <VueDatePicker :enable-time-picker="false" class="date-picker" :placeholder="placeholder" :class="`${size ?  size : ''}`"
+                       v-model="inputValue"></VueDatePicker>
+      </template>
     </template>
-
-    <template v-if="type === 'date-range'">
-      <picker class="form-control" range :type="dateType" :placeholder="placeholder" :class="`${size ?  size : ''}`"
-              v-model:value="inputValue"></picker>
-    </template>
+    <!-- / dates -->
 
 
     <template v-if="type === 'textarea'">
       <textarea ref="textArea" :placeholder="placeholder" class="form-textarea" :class="size" :value="inputValue"
                 @input="updateValue" :style="{ height: `${textareaHeight}px` }"/>
     </template>
+    <!-- / textarea -->
 
 
     <template v-if="type === 'number'">
@@ -54,6 +59,7 @@
         </div>
       </div>
     </template>
+    <!-- / number -->
 
 
     <template v-if="type === 'range'">
@@ -72,6 +78,8 @@
 
       </flex>
     </template>
+    <!-- / range -->
+
 
     <template v-if="type === 'radio'">
 
@@ -84,6 +92,8 @@
         </flex>
       </flex>
     </template>
+    <!-- / radio -->
+
 
 
     <template v-if="type === 'checkbox'">
@@ -98,27 +108,34 @@
       </flex>
     </template>
 
-
     <template v-if="type === 'switch'">
       <div class="toggle-btn" :style="[ inputValue ? `background: var(--${switchColor});` : '']"
            :class="`${inputValue ? 'active' : ''} ${size ? size : ''} `" @click.prevent="toggleSwitch">
         <span :style="`border-color: var(--light);`"></span>
       </div>
     </template>
+    <!-- / checkbox -->
+
 
 
     <template v-if="validationError">
       <p class="form-error tx-12 tx-danger">{{ validationError }}</p>
     </template>
+    <!-- / validationError -->
+
 
   </div>
 </template>
 
 <script>
-import Picker from 'vue-datepicker-next';
+import VueDatePicker from '@vuepic/vue-datepicker';
+
+import {ref} from 'vue';
 
 export default {
-  components: {Picker},
+
+  components: {VueDatePicker},
+
   props: {
 
     formStyle: {
@@ -132,7 +149,6 @@ export default {
 
     dateType: {
       type: String,
-      default: "Date"
     },
 
     label: {
@@ -158,7 +174,6 @@ export default {
       type: Boolean,
       default: false
     },
-
 
     // switch
     switchColor: {
@@ -202,59 +217,69 @@ export default {
     },
 
   },
-  data() {
-    return {
-      validationError: '',
-      showPassword: false,
-      inputValue: this.value,
-      showNumberArrows: false,
-      textareaHeight: this.minTextareaHeight
-    };
-  },
+  setup(props, {emit}) {
 
-  methods: {
-    updateValue(event) {
+    const validationError = ref('')
+    const showPassword = ref(false)
+    const inputValue = ref(props.value)
+    const showNumberArrows = ref(false)
+    const textareaHeight = ref(props.minTextareaHeight)
 
-      if (this.type === 'radio' || this.type === 'checkbox' || this.type === 'switch') {
-        this.inputValue = event.target.checked;
+
+    const updateValue = (event) => {
+
+      if (props.type === 'radio' || props.type === 'checkbox' || props.type === 'switch') {
+        inputValue.value = event.target.checked;
       } else {
-        this.inputValue = event.target.value;
+        inputValue.value = event.target.value;
       }
 
-      if (this.required && !this.inputValue) {
-        this.validationError = 'This field is required';
+      if (props.required && !inputValue.value) {
+        validationError.value = 'This field is required';
         return;
       }
-      this.validationError = '';
+      validationError.value = '';
 
 
-      this.inputValue = event.target.value;
-      this.$emit('update:value', this.inputValue);
+      inputValue.value = event.target.value;
+      emit('update:value', inputValue.value);
 
-    },
-
-
-    toggleSwitch() {
-      this.inputValue = !this.inputValue
-      this.$emit('update:value', this.inputValue);
-    },
-
-    togglePasswordVisibility() {
-      this.showPassword = !this.showPassword;
-    },
-
-
-    incrementValue() {
-      this.inputValue++;
-      this.$emit('update:value', this.inputValue);
-    },
-
-    decrementValue() {
-      this.inputValue--;
-      this.$emit('update:value', this.inputValue);
     }
 
 
+    const toggleSwitch = () => {
+      inputValue.value = !inputValue.value
+      emit('update:value', inputValue.value);
+    }
+
+    const togglePasswordVisibility = () => {
+      showPassword.value = !showPassword.value;
+    }
+
+
+    const incrementValue = () => {
+      inputValue.value++;
+      emit('update:value', inputValue.value);
+    }
+
+    const decrementValue = () => {
+      inputValue.value--;
+      emit('update:value', inputValue.value);
+    }
+
+
+    return {
+      updateValue,
+      toggleSwitch,
+      togglePasswordVisibility,
+      incrementValue,
+      decrementValue,
+      validationError,
+      showPassword,
+      inputValue,
+      showNumberArrows,
+      textareaHeight
+    };
   },
 
 
