@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@vuepic/vue-datepicker": "^4.2.3",
+    "@vuestic/nuxt": "^1.0.12",
     "axios": "^1.1.3",
     "pinia": "^2.0.26",
     "remixicon": "^2.5.0",
