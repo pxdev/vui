@@ -15,26 +15,71 @@
     </div>
 
 
-
-
     <section class="container d-flex align-items-start gap-30 pd-y-50">
 
-      <div class="ui-nav card" style="min-width: 290px; position: sticky; top: 0">
-        <ul class="tabbed-nav">
-          <li><a class="pd-5 d-flex" href="#DatePicker">Forms</a></li>
-          <li><a class="pd-5 d-flex" href="#Modals">Modals</a></li>
-
-          <li><a class="pd-5 d-flex" href="#Tables">Tables</a></li>
-          <li><a class="pd-5 d-flex" href="#Buttons">Buttons</a></li>
-          <li><a class="pd-5 d-flex" href="#Dropdown">Dropdown</a></li>
-          <li><a class="pd-5 d-flex" href="#Avatars">Avatars</a></li>
-          <li><a class="pd-5 d-flex" href="#Grid">Grid</a></li>
-          <li><a class="pd-5 d-flex" href="#Autocomplete">Autocomplete</a></li>
-          <li><a class="pd-5 d-flex" href="#Splitter">Splitter</a></li>
-          <li><a class="pd-5 d-flex" href="#Tabs">Tabs</a></li>
-        </ul>
+      <div class="card" style="min-width: 290px; position: sticky; top: 0">
+        <div class="ui-nav">
+          <h3>Core</h3>
+          <ul>
+            <li><a href="#Grid">Grid System</a></li>
+            <li><a href="#Typography">Typography</a></li>
+           </ul>
+        </div>
       </div>
       <div class="ui-content flex-fill bd-l">
+
+        <div id="Grid" class="card pd-50 gap-20 mg-b-30">
+
+          <h2 class="mg-b-30">Grid System</h2>
+
+          <p>Create basic grid layout using columns.</p>
+
+          <doc-code>
+            &ltgrid&gt <br>
+            &nbsp; &ltgrid-col :md="6"&gt&lt/grid-col&gt<br>
+            &lt/grid&gt
+          </doc-code>
+
+          <grid>
+            <grid-col :md="6">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-6</div>
+            </grid-col>
+            <grid-col :md="6">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-6</div>
+            </grid-col>
+            <grid-col :md="7">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-7</div>
+            </grid-col>
+            <grid-col :md="5">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-5</div>
+            </grid-col>
+            <grid-col :md="8">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-8</div>
+            </grid-col>
+            <grid-col :md="4">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-4</div>
+            </grid-col>
+            <grid-col :md="9">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-9</div>
+            </grid-col>
+            <grid-col :md="3">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-3</div>
+            </grid-col>
+            <grid-col :md="10">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-10</div>
+            </grid-col>
+            <grid-col :md="2">
+              <div class="bg-gray pd-5 tx-center mg-b-20">col-2</div>
+            </grid-col>
+          </grid>
+        </div>
+        <div id="Typography" class="card pd-50 gap-20 mg-b-30">
+
+          <h2 class="mg-b-30">Typography</h2>
+
+
+        </div>
+
 
         <div id="Forms" class="card pd-20 mg-20 gap-20">
           <h2 class="mg-b-30">Forms</h2>
@@ -70,25 +115,25 @@
           <grid>
             <grid-col :md="6" class="mg-b-20">
               <h3 class="mg-b-20">Input Fields</h3>
-              <form-input size="sm" class="mg-b-20" required type="text" label="Form input text" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="password" label="Form input number" :value="inputValue" placeholder="Enter your password" @update:value="updateInputValue"/>
-              <form-input size="sm" class="mg-b-20" type="number" label="Form input number" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="textarea" label="Form textarea" :value="inputValue" placeholder="Enter your value" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="radio" orient="horizontal" data-group="R1" label="Form Check horizontal" :options="inputOptions" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="radio" orient="vertical" data-group="R2" label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="checkbox" orient="vertical" data-group="c1" label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
+              <form-input size="sm" class="mg-b-20" required type="text" label="Form input text" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+              <form-input size="lg" class="mg-b-20" type="password" label="Form input number" :value="inputValue"
+                          placeholder="Enter your password" @update:value="updateInputValue"/>
+              <form-input size="sm" class="mg-b-20" type="number" label="Form input number" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+              <form-input size="lg" class="mg-b-20" type="textarea" label="Form textarea" :value="inputValue"
+                          placeholder="Enter your value" @update:value="updateInputValue"/>
+              <form-input size="lg" class="mg-b-20" type="radio" orient="horizontal" data-group="R1"
+                          label="Form Check horizontal" :options="inputOptions" @update:value="updateInputValue"/>
+              <form-input size="lg" class="mg-b-20" type="radio" orient="vertical" data-group="R2"
+                          label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
+              <form-input size="lg" class="mg-b-20" type="checkbox" orient="vertical" data-group="c1"
+                          label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
 
             </grid-col>
-            <grid-col :md="6" class="mg-b-20">
-              <h3 class="mg-b-20">Input Fields</h3>
 
-              <form-input label="Form input text"  class="mg-b-20"  type="date" v-model:value="dateRangeValue"></form-input>
-              <form-input size="lg" label="Form input text"  class="mg-b-20"  type="date" date-type="range" v-model:value="dateRangeValue"></form-input>
-
-            </grid-col>
           </grid>
         </div>
-
 
 
         <div id="Dropdown" class="card pd-20 mg-20 gap-20">
@@ -141,8 +186,7 @@
         </div>
 
 
-
-        </div>
+      </div>
     </section>
 
 
@@ -158,7 +202,7 @@ import DocCode from "~/components/ui/docs/DocCode.vue";
 definePageMeta({layout: 'ui'})
 export default {
   name: "index",
-  components: {DocCode },
+  components: { DocCode},
 
   setup() {
 
@@ -171,8 +215,6 @@ export default {
 
     const dateRangeValue = ref('');
     const isLoading = ref(false);
-
-
 
 
     const links = reactive(
@@ -189,7 +231,7 @@ export default {
         ]
     );
 
-    const buttons  = reactive(
+    const buttons = reactive(
         [
           {name: "default"},
           {name: "primary"},
@@ -203,7 +245,7 @@ export default {
     )
 
 
-    const updateInputValue = (newValue)=> {
+    const updateInputValue = (newValue) => {
       console.log(newValue)
     }
 
@@ -219,7 +261,7 @@ export default {
 </script>
 
 <style scoped>
-  .btn {
-    min-width: 200px;
-  }
+.btn {
+  min-width: 200px;
+}
 </style>

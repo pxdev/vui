@@ -64,6 +64,7 @@ export default {
   methods: {
 
     onItemClick(index, e) {
+
       this.$emit('update:activeIndex', index);
 
 

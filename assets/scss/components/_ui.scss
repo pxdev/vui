@@ -1,0 +1,22 @@
+.ui-nav {
+  ul{
+    margin-bottom: 15px;
+    @include rtl('border-left', 1px solid var(--border-color), 1px solid var(--border-color));
+
+  }
+  h3 {
+    margin-bottom: 15px;
+  }
+  a{
+    display: block;
+    padding: 10px 15px;
+    @include rtl('border-left', 2px solid transparent, 2px solid transparent);
+
+    &:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+
+    }
+
+  }
+}

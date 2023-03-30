@@ -54,6 +54,7 @@ input::-webkit-inner-spin-button {
     }
 
   }
+
   .form-select {
     @extend %form-control;
     -moz-padding-start: calc(0.75rem - 3px);
@@ -91,6 +92,7 @@ input::-webkit-inner-spin-button {
 
 
   }
+
   .form-textarea {
     @extend %form-control;
     height: $normal-textarea-size;
@@ -123,6 +125,7 @@ input::-webkit-inner-spin-button {
     }
 
   }
+
   .input-number {
     position: relative;
     flex-grow: 1;
@@ -167,7 +170,7 @@ input::-webkit-inner-spin-button {
       }
 
       &.sm {
-        a{
+        a {
           font-size: 12px;
         }
       }
@@ -176,14 +179,13 @@ input::-webkit-inner-spin-button {
     }
 
 
-
   }
 
   label {
     font-size: 12px;
     font-weight: 400;
     padding: 6px 0;
-   }
+  }
 
 
   &.inline-form {
@@ -223,9 +225,11 @@ input::-webkit-inner-spin-button {
 
     .form-control {
       @extend %form-control-underline;
+
       &:hover {
         border-color: $primary;
       }
+
       &:focus {
         border-color: $primary;
       }
@@ -241,10 +245,6 @@ input::-webkit-inner-spin-button {
 
 
 }
-
-
-
-
 
 
 .range-input {
@@ -307,6 +307,7 @@ input::-webkit-inner-spin-button {
   }
 
 }
+
 .show-password {
   transform: translateY(-50%);
   @include rtl(inset, 50% 4px auto auto, 50% auto auto 4px);
@@ -314,5 +315,64 @@ input::-webkit-inner-spin-button {
   .btn {
     height: 100%;
     max-height: none;
+  }
+}
+
+//eb80
+
+.custom-radio {
+  label {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+
+    &:before {
+      font-size: 20px;
+      content: "\eb7d";
+      font-family: 'remixicon' !important;
+    }
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked {
+      ~ label {
+        &:before {
+          content: "\eb80";
+          color: var(--primary);
+         }
+      }
+    }
+
+  }
+}
+.custom-check {
+  label {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
+
+    &:before {
+      font-size: 20px;
+      content: "\eb7f";
+      font-family: 'remixicon' !important;
+    }
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+
+    &:checked {
+      ~ label {
+        &:before {
+          content: "\eb82";
+          color: var(--primary);
+        }
+      }
+    }
+
   }
 }

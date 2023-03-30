@@ -1,6 +1,4 @@
 <template>
-
-
   <div class="form-group"
        :class="`${formStyle && type === 'text' || formStyle && type === 'textarea'  || formStyle && type === 'password' || formStyle && type === 'date' || formStyle && type === 'date-range' || formStyle && type === 'number'    ? formStyle : ''} ${type ? 'form-' + type + '-type' : '' }`">
 
@@ -24,28 +22,11 @@
       </flex>
 
     </template>
-    <!-- / text and password -->
-
-
-    <template v-if="type === 'date'">
-      <template v-if="dateType">
-        <VueDatePicker class="date-picker" :enable-time-picker="false" range :placeholder="placeholder" :class="`${size ?  size : ''}`"
-                       v-model="inputValue"></VueDatePicker>
-      </template>
-      <template v-else>
-        <VueDatePicker :enable-time-picker="false" class="date-picker" :placeholder="placeholder" :class="`${size ?  size : ''}`"
-                       v-model="inputValue"></VueDatePicker>
-      </template>
-    </template>
-    <!-- / dates -->
-
 
     <template v-if="type === 'textarea'">
       <textarea ref="textArea" :placeholder="placeholder" class="form-textarea" :class="size" :value="inputValue"
                 @input="updateValue" :style="{ height: `${textareaHeight}px` }"/>
     </template>
-    <!-- / textarea -->
-
 
     <template v-if="type === 'number'">
       <div class="input-number">
@@ -59,8 +40,6 @@
         </div>
       </div>
     </template>
-    <!-- / number -->
-
 
     <template v-if="type === 'range'">
       <flex class="range-input is-ltr" fill>
@@ -78,29 +57,21 @@
 
       </flex>
     </template>
-    <!-- / range -->
-
 
     <template v-if="type === 'radio'">
-
       <flex :gap="orient === 'vertical' ? '' : '20'" :direction="orient === 'vertical' ? 'column' : 'row'  ">
 
-        <flex items="center" gap="5" v-for="(option, index) in options" :key="index+'radio'">
-          <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="radio" :value="option"
-                 :checked="value === option" @change="updateValue"/>
+        <flex items="center" class="custom-radio" gap="5" v-for="(option, index) in options" :key="index+'radio'">
+          <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="radio" :value="option" :checked="value === option" @change="updateValue"/>
           <label :for="`${dataGroup}_${index}`">{{ option }}</label>
         </flex>
       </flex>
     </template>
-    <!-- / radio -->
-
-
 
     <template v-if="type === 'checkbox'">
+       <flex :gap="orient === 'vertical' ? '' : '20'" :direction="orient === 'vertical' ? 'column' : 'row'  ">
 
-      <flex :gap="orient === 'vertical' ? '' : '20'" :direction="orient === 'vertical' ? 'column' : 'row'  ">
-
-        <flex items="center" gap="5" v-for="(option, index) in options" :key="index+'check'">
+        <flex class="custom-check" items="center" gap="5" v-for="(option, index) in options" :key="index+'check'">
           <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="checkbox" :value="option"
                  :checked="value === option" @change="updateValue"/>
           <label :for="`${dataGroup}_${index}`">{{ option }}</label>
@@ -114,27 +85,20 @@
         <span :style="`border-color: var(--light);`"></span>
       </div>
     </template>
-    <!-- / checkbox -->
-
-
 
     <template v-if="validationError">
       <p class="form-error tx-12 tx-danger">{{ validationError }}</p>
     </template>
-    <!-- / validationError -->
-
 
   </div>
 </template>
 
 <script>
-import VueDatePicker from '@vuepic/vue-datepicker';
 
 import {ref} from 'vue';
 
 export default {
 
-  components: {VueDatePicker},
 
   props: {
 
