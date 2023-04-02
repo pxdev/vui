@@ -35,6 +35,8 @@
           <p>Create basic grid layout using columns.</p>
 
 
+
+
           <doc-code>
             &ltgrid&gt <br>
             &nbsp; &ltgrid-col :md="6"&gt&lt/grid-col&gt<br>
@@ -90,6 +92,7 @@
           <form-textarea class="mg-b-15" adjust-to-text :value="inputValue" label="Adjust to text Textarea" placeholder="Enter your value" @update:value="updateInputValue"></form-textarea>
           <form-input class="mg-b-15" type="text" size="lg" :value="inputValue" label="Input Type Text" placeholder="Enter your value" @update:value="updateInputValue"></form-input>
           <form-input class="mg-b-15" type="password" size="lg" :value="inputValue" label="Input Type Passowrd" placeholder="Enter your value" @update:value="updateInputValue"></form-input>
+          <form-input  class="mg-b-15" type="number" size="lg" :value="inputValue" label="Input Type Text" placeholder="Enter your value" @update:value="updateInputValue"></form-input>
 
           <form-switch switch-color="primary" :value="formSwitch"  placeholder="Enter your value" @update:value="updateInputValue" ></form-switch>
 

@@ -160,9 +160,7 @@ input::-webkit-inner-spin-button {
 
 
         &:hover {
-          color: var(--gray);
-          background: var(--primary);
-
+           background: var(--dark-gray);
         }
 
         &.disabled {

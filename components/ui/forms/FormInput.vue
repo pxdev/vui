@@ -10,6 +10,7 @@
            v-model="input"
            @input="updateValue"
     />
+
     <flex position="relative" fill v-if="type === 'password'">
       <input @focusin="toggleMeter" @focusout="toggleMeter" :type="showPassword ? 'text' : 'password' "
              ref="inputPassword"
@@ -32,6 +33,25 @@
         <span :class="{'active': passwordStrength >= 4 }" class="bar bar-4"></span>
       </flex>
     </flex>
+
+
+      <div v-if="type === 'number'" class="input-number">
+        <input
+            ref="inputText"
+            :placeholder="props.placeholder"
+            class="form-control"
+            :class="props.size"
+            v-model="input"
+            @input="updateValue"
+            type="number"
+        />
+        <div class="number-icon" :class="props.size">
+          <a href="#" @click.prevent="incrementValue"><i class="ri-arrow-up-s-line"></i></a>
+          <a href="#" @click.prevent="decrementValue"><i class="ri-arrow-down-s-line"></i></a>
+        </div>
+      </div>
+
+
 
   </div>
 </template>
@@ -76,6 +96,19 @@ const passwordStrength = computed(() => {
   if (/[0-9]/.test(input.value)) score++;
   return score;
 });
+
+
+const incrementValue = () => {
+  inputValue.value++;
+  input.value++;
+  emit('update:value', inputValue.value);
+}
+
+const decrementValue = () => {
+  inputValue.value--;
+  input.value--;
+  emit('update:value', inputValue.value);
+}
 
 
 watchEffect(() => {
