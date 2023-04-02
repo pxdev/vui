@@ -40,12 +40,12 @@ input::-webkit-inner-spin-button {
 
 
     &:hover {
-      border-color: $primary;
+      border-color: var(--dark);
     }
 
     &:focus {
       outline: none;
-      border-color: $primary;
+      border-color: var(--dark-gray);
       border-width: 1px;
     }
 
@@ -77,13 +77,13 @@ input::-webkit-inner-spin-button {
     }
 
     &:hover {
-      border-color: $primary;
+      border-color: var(--dark-gray);
     }
 
     &:focus {
       outline: none;
-      border-color: $primary;
-      border-width: 2px;
+      border-color: var(--dark);
+      border-width: 1px;
     }
 
     &.rounded {
@@ -95,14 +95,19 @@ input::-webkit-inner-spin-button {
 
   .form-textarea {
     @extend %form-control;
-    height: $normal-textarea-size;
+    min-height: $normal-textarea-size;
+
+    &.resizable {
+      resize: none;
+      overflow: hidden;
+    }
 
     &.sm {
-      height: $small-textarea-size;
+      min-height: $small-textarea-size;
     }
 
     &.lg {
-      height: $large-textarea-size;
+      min-height: $large-textarea-size;
     }
 
     &:hover {
@@ -111,8 +116,8 @@ input::-webkit-inner-spin-button {
 
     &:focus {
       outline: none;
-      border-color: $primary;
-      border-width: 2px;
+      border-color: var(--dark);
+      border-width: 1px;
     }
 
     &:disabled {
@@ -227,11 +232,11 @@ input::-webkit-inner-spin-button {
       @extend %form-control-underline;
 
       &:hover {
-        border-color: $primary;
+        border-color: var(--dark-gray);
       }
 
       &:focus {
-        border-color: $primary;
+        border-color: var(--dark-gray);
       }
     }
 
@@ -376,3 +381,42 @@ input::-webkit-inner-spin-button {
 
   }
 }
+
+.password-meter {
+  position: absolute;
+  inset: auto 0 -15px auto;
+  padding: 1px;
+  background: var(--light);
+  max-width: 200px;
+  min-width: 100px;
+
+  .bar {
+    background: var(--gray);
+    border-radius: $normal-radius;
+    height: 4px;
+    width: 25%;
+  }
+
+  .bar-1 {
+    &.active {
+      background: var(--danger);
+    }
+  }
+  .bar-2 {
+    &.active {
+      background: var(--warning);
+    }
+  }
+  .bar-3 {
+    &.active {
+      background: var(--info);
+    }
+  }
+  .bar-4 {
+    &.active {
+      background: var(--success);
+    }
+  }
+
+}
+

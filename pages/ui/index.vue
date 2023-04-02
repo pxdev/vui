@@ -34,6 +34,7 @@
 
           <p>Create basic grid layout using columns.</p>
 
+
           <doc-code>
             &ltgrid&gt <br>
             &nbsp; &ltgrid-col :md="6"&gt&lt/grid-col&gt<br>
@@ -78,61 +79,20 @@
           <h2 class="mg-b-30">Typography</h2>
 
 
+
         </div>
 
 
         <div id="Forms" class="card pd-20 mg-20 gap-20">
           <h2 class="mg-b-30">Forms</h2>
-          <grid class="mg-b-30">
-            <grid-col :md="12">
-              <h3 class="mg-b-20">Range Sliders</h3>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="primary" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="secondary" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="danger" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="warning" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="info" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-            <grid-col :md="6">
-              <form-input range-percentage class="mg-b-20" type="range" range-color="success" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-            </grid-col>
-          </grid>
-          <grid>
-            <grid-col :md="6" class="mg-b-20">
-              <h3 class="mg-b-20">Input Fields</h3>
-              <form-input size="sm" class="mg-b-20" required type="text" label="Form input text" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="password" label="Form input number" :value="inputValue"
-                          placeholder="Enter your password" @update:value="updateInputValue"/>
-              <form-input size="sm" class="mg-b-20" type="number" label="Form input number" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="textarea" label="Form textarea" :value="inputValue"
-                          placeholder="Enter your value" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="radio" orient="horizontal" data-group="R1"
-                          label="Form Check horizontal" :options="inputOptions" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="radio" orient="vertical" data-group="R2"
-                          label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
-              <form-input size="lg" class="mg-b-20" type="checkbox" orient="vertical" data-group="c1"
-                          label="Form Check vertical" :options="inputOptions" @update:value="updateInputValue"/>
 
-            </grid-col>
+          <form-textarea disabled="true" class="mg-b-15" :value="inputValue" label="Normal Textarea" placeholder="Enter your value" @update:value="updateInputValue"></form-textarea>
+          <form-textarea class="mg-b-15" adjust-to-text :value="inputValue" label="Adjust to text Textarea" placeholder="Enter your value" @update:value="updateInputValue"></form-textarea>
+          <form-input class="mg-b-15" type="text" size="lg" :value="inputValue" label="Input Type Text" placeholder="Enter your value" @update:value="updateInputValue"></form-input>
+          <form-input class="mg-b-15" type="password" size="lg" :value="inputValue" label="Input Type Passowrd" placeholder="Enter your value" @update:value="updateInputValue"></form-input>
 
-          </grid>
+          <form-switch switch-color="primary" :value="formSwitch"  placeholder="Enter your value" @update:value="updateInputValue" ></form-switch>
+
         </div>
 
 
@@ -217,6 +177,9 @@ export default {
     const isLoading = ref(false);
 
 
+    const formSwitch = ref(false);
+
+
     const links = reactive(
         [
           {name: 'Ahmed', icon: 'ri-map-pin-line'},
@@ -252,7 +215,7 @@ export default {
 
     return {
       updateInputValue,
-      modalVisible, links, selected, buttons, inputValue, inputOptions, dateValue, dateRangeValue, isLoading
+      formSwitch, modalVisible, links, selected, buttons, inputValue, inputOptions, dateValue, dateRangeValue, isLoading
     }
   }
 

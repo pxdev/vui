@@ -213,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-@mixin make-opacity($num) {
+@mixin make-text($num) {
   .tx-#{$num} {
     font-size: #{$num}px;
   }
@@ -222,6 +222,6 @@ h1, h2, h3, h4, h5, h6 {
 
 $num: 10;
 @while $num <= 80 {
-  @include make-opacity($num);
+  @include make-text($num);
   $num: $num + 2;
 }

@@ -41,16 +41,13 @@ $num: 0;
 
 /* Flex Gap */
 @mixin make-gap($num) {
-
-    // generating margin classes in px
     .gap-#{$num} {
         gap: #{$num}px !important;;
     }
-
 
 }
 $num: 0;
 @while $num <= 100 {
     @include make-gap($num);
-    $num: $num + 5;
+    $num: $num + 1;
 }

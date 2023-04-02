@@ -1,251 +1,93 @@
 <template>
-  <div class="form-group"
-       :class="`${formStyle && type === 'text' || formStyle && type === 'textarea'  || formStyle && type === 'password' || formStyle && type === 'date' || formStyle && type === 'date-range' || formStyle && type === 'number'    ? formStyle : ''} ${type ? 'form-' + type + '-type' : '' }`">
+  <div class="form-group form-textarea"  v-bind="$attrs">
+    <form-label v-if="props.label" :required="props.required">{{ props.label }}</form-label>
 
-
-    <label class="form-label" v-if="label">{{ label }} <i v-if="required" class="tx-danger required-star">*</i> </label>
-
-    <template v-if="type === 'text' || type === 'password'">
-
-      <template v-if="type === 'text'">
-        <input :type="type" :placeholder="placeholder" class="form-control" :class="size" :value="inputValue"
-               @input="updateValue"/>
-      </template>
-
-      <flex position="relative" fill v-if="type === 'password'">
-        <input :type="showPassword ? 'text' : 'password' " :placeholder="placeholder" class="form-control" :class="size"
-               :value="inputValue" @input="updateValue"/>
-        <flex v-if="inputValue.length" class="show-password" position="absolute">
-          <btn type="default" :icon="showPassword ? 'ri-eye-line tx-16 ' :  'ri-eye-off-line tx-16 op-5' "
-               @click.prevent="togglePasswordVisibility"></btn>
-        </flex>
+    <input type="text" v-if="type === 'text'"
+           ref="inputText"
+           :placeholder="props.placeholder"
+           class="form-control"
+           :class="props.size"
+           v-model="input"
+           @input="updateValue"
+    />
+    <flex position="relative" fill v-if="type === 'password'">
+      <input @focusin="toggleMeter" @focusout="toggleMeter" :type="showPassword ? 'text' : 'password' "
+             ref="inputPassword"
+             :placeholder="props.placeholder"
+             class="form-control"
+             :class="props.size"
+             v-model="input"
+             @input="updateValue"
+      />
+      <flex v-if="inputValue.length" class="show-password" position="absolute">
+        <btn type="default"
+             :icon="showPassword ? 'ri-eye-line tx-16 ' :  'ri-eye-off-line tx-16 op-5' "
+             @click.prevent="togglePasswordVisibility">
+        </btn>
       </flex>
-
-    </template>
-
-    <template v-if="type === 'textarea'">
-      <textarea ref="textArea" :placeholder="placeholder" class="form-textarea" :class="size" :value="inputValue"
-                @input="updateValue" :style="{ height: `${textareaHeight}px` }"/>
-    </template>
-
-    <template v-if="type === 'number'">
-      <div class="input-number">
-        <input
-            :placeholder="placeholder" class="form-control"
-            :class="size" type="number"
-            :value="inputValue" @input="updateValue"/>
-        <div class="number-icon" :class="size">
-          <a href="#" @click.prevent="incrementValue"><i class="ri-arrow-up-s-line"></i></a>
-          <a href="#" @click.prevent="decrementValue"><i class="ri-arrow-down-s-line"></i></a>
-        </div>
-      </div>
-    </template>
-
-    <template v-if="type === 'range'">
-      <flex class="range-input is-ltr" fill>
-        <input :min="rangeMin" :max="rangeMax" :step="rangeStep" type="range" :value="inputValue" @input="updateValue"/>
-        <flex content="start" gap="5" fill>
-          <flex fill content="start" class="range-bar">
-            <div class="range-progress" :style="`background: var(--${rangeColor});  width: ${inputValue}%`">
-              <span class="grip" :style="`border-color: var(--${rangeColor});`"></span>
-            </div>
-          </flex>
-          <flex v-if="rangePercentage" width="30px" items="center" content="end">
-            {{ inputValue ? inputValue : "0" }}%
-          </flex>
-        </flex>
-
+      <flex v-if="passwordMeterVisible" gap="5" fill position="absolute" class="password-meter">
+         <span :class="{'active': passwordStrength >= 1 }" class="bar bar-1"></span>
+        <span :class="{'active': passwordStrength >= 2 }" class="bar bar-2"></span>
+        <span :class="{'active': passwordStrength >= 3 }" class="bar bar-3"></span>
+        <span :class="{'active': passwordStrength >= 4 }" class="bar bar-4"></span>
       </flex>
-    </template>
-
-    <template v-if="type === 'radio'">
-      <flex :gap="orient === 'vertical' ? '' : '20'" :direction="orient === 'vertical' ? 'column' : 'row'  ">
-
-        <flex items="center" class="custom-radio" gap="5" v-for="(option, index) in options" :key="index+'radio'">
-          <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="radio" :value="option" :checked="value === option" @change="updateValue"/>
-          <label :for="`${dataGroup}_${index}`">{{ option }}</label>
-        </flex>
-      </flex>
-    </template>
-
-    <template v-if="type === 'checkbox'">
-       <flex :gap="orient === 'vertical' ? '' : '20'" :direction="orient === 'vertical' ? 'column' : 'row'  ">
-
-        <flex class="custom-check" items="center" gap="5" v-for="(option, index) in options" :key="index+'check'">
-          <input :id="`${dataGroup}_${index}`" :name="dataGroup" type="checkbox" :value="option"
-                 :checked="value === option" @change="updateValue"/>
-          <label :for="`${dataGroup}_${index}`">{{ option }}</label>
-        </flex>
-      </flex>
-    </template>
-
-    <template v-if="type === 'switch'">
-      <div class="toggle-btn" :style="[ inputValue ? `background: var(--${switchColor});` : '']"
-           :class="`${inputValue ? 'active' : ''} ${size ? size : ''} `" @click.prevent="toggleSwitch">
-        <span :style="`border-color: var(--light);`"></span>
-      </div>
-    </template>
-
-    <template v-if="validationError">
-      <p class="form-error tx-12 tx-danger">{{ validationError }}</p>
-    </template>
+    </flex>
 
   </div>
 </template>
 
-<script>
+<script setup>
+import {ref, watchEffect, computed} from 'vue'
+import {useCommon} from "./composables/common";
 
-import {ref} from 'vue';
-
-export default {
-
-
-  props: {
-
-    formStyle: {
-      type: String,
-    },
-
-    type: {
-      type: String,
-      required: true
-    },
-
-    dateType: {
-      type: String,
-    },
-
-    label: {
-      type: String,
-    },
-
-    placeholder: {
-      type: String,
-    },
-
-    size: {
-      type: String,
-    },
-
-    value: {},
-
-    options: {
-      type: Array,
-      default: () => []
-    },
-
-    required: {
-      type: Boolean,
-      default: false
-    },
-
-    // switch
-    switchColor: {
-      type: String,
-      default: "primary"
-    },
-
-    // input range
-    rangeColor: {
-      type: String,
-      default: "primary"
-    },
-
-    rangeMin: {
-      type: String,
-    },
-
-    rangeMax: {
-      type: String,
-    },
-    rangeStep: {
-      type: String,
-    },
-    rangePercentage: {
-      type: Boolean,
-    },
-
-    // radio and checkbox groups
-    dataGroup: {
-      type: String,
-    },
-
-    orient: {
-      type: String,
-      default: 'horizontal'
-    },
-
-
-    minTextareaHeight: {
-      type: Number,
-    },
-
+const props = defineProps({
+  value: String,
+  type: {
+    type: String,
+    default: 'text'
   },
-  setup(props, {emit}) {
-
-    const validationError = ref('')
-    const showPassword = ref(false)
-    const inputValue = ref(props.value)
-    const showNumberArrows = ref(false)
-    const textareaHeight = ref(props.minTextareaHeight)
-
-
-    const updateValue = (event) => {
-
-      if (props.type === 'radio' || props.type === 'checkbox' || props.type === 'switch') {
-        inputValue.value = event.target.checked;
-      } else {
-        inputValue.value = event.target.value;
-      }
-
-      if (props.required && !inputValue.value) {
-        validationError.value = 'This field is required';
-        return;
-      }
-      validationError.value = '';
-
-
-      inputValue.value = event.target.value;
-      emit('update:value', inputValue.value);
-
-    }
-
-
-    const toggleSwitch = () => {
-      inputValue.value = !inputValue.value
-      emit('update:value', inputValue.value);
-    }
-
-    const togglePasswordVisibility = () => {
-      showPassword.value = !showPassword.value;
-    }
-
-
-    const incrementValue = () => {
-      inputValue.value++;
-      emit('update:value', inputValue.value);
-    }
-
-    const decrementValue = () => {
-      inputValue.value--;
-      emit('update:value', inputValue.value);
-    }
-
-
-    return {
-      updateValue,
-      toggleSwitch,
-      togglePasswordVisibility,
-      incrementValue,
-      decrementValue,
-      validationError,
-      showPassword,
-      inputValue,
-      showNumberArrows,
-      textareaHeight
-    };
+  PasswordMeter: {
+    type: Boolean,
+    default: true
   },
+  ...useCommon.props(), // spread the useCommon props here
+
+})
+
+const input = ref('')
+const inputValue = ref(props.value)
+const showPassword = ref(false)
+
+const passwordMeterVisible = ref(false)
+
+const toggleMeter = ()=> {
+  passwordMeterVisible.value = ! passwordMeterVisible.value
+}
+
+const togglePasswordVisibility = () => {
+  showPassword.value = !showPassword.value;
+}
+
+const passwordStrength = computed(() => {
+  let score = 0;
+  if (input.value.length >= 8) score++;
+  if (/[A-Z]/.test(input.value)) score++;
+  if (/[a-z]/.test(input.value)) score++;
+  if (/[0-9]/.test(input.value)) score++;
+  return score;
+});
 
 
-};
+watchEffect(() => {
+  inputValue.value = props.value
+})
+
+const emit = defineEmits(['update:value'])
+
+const updateValue = (event) => {
+  const value = event.target.value
+  inputValue.value = value
+  emit('update:value', value)
+}
+
 </script>

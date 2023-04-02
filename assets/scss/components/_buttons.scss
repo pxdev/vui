@@ -31,12 +31,12 @@
     opacity: 0;
   }
 
-  &:hover {
-    &:after {
-      background: rgba(0, 0, 0, 0.4);
-      opacity: 0.2;
-    }
-  }
+  //&:hover {
+  //  &:after {
+  //    background: rgba(0, 0, 0, 0.1);
+  //    opacity: 0.2;
+  //  }
+  //}
 
 
   .btn-icon {
@@ -284,14 +284,12 @@
 }
 
 .btn-gray {
-  background: var(--gray);
+  border-color: var(--gray);
   color: var(--font-color-base);
 
   .btn-loading {
     background: var(--gray);
-    color: var(--light);
-
-  }
+   }
 
 }
 
@@ -302,7 +300,6 @@
   .btn-loading {
     background: var(--gray);
     color: var(--light);
-
   }
 
 }
