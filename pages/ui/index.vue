@@ -3,7 +3,7 @@
   <div>
 
 
-    <flex class="header pd-20 bg-primary tx-light" position="sticky" style="top: 0; z-index: 100">
+    <flex class="header op-9 pd-20 bg-primary tx-light shadow" position="sticky" style="top: 0; z-index: 100">
       <div class="container d-flex align-items-center justify-content-between">
         <h3><router-link class="tx-light" to="/ui">Vue Starter Ui Kit</router-link></h3>
         <flex>
@@ -19,15 +19,35 @@
 
       <div class="card" style="min-width: 290px; position: sticky; top: 100px">
         <div class="ui-nav">
-          <h3>Core</h3>
+          <h3>Form Components</h3>
           <ul>
             <li><a href="#Forms">Forms</a></li>
             <li><a href="#Dropdown">Dropdown</a></li>
             <li><a href="#Buttons">Buttons</a></li>
-            <li><a href="#Modals">Modals</a></li>
-            <li><a href="#Grid">Modals</a></li>
           </ul>
         </div>
+
+        <div class="ui-nav">
+          <h3>Ui Components</h3>
+          <ul>
+            <li><a href="#Modals">Modals</a></li>
+            <li><a href="#Alerts">Alerts</a></li>
+            <li><a href="#Avatars">Avatars</a></li>
+            <li><a href="#Splitter">Splitter</a></li>
+            <li><a href="#Tabs">Tabs</a></li>
+
+          </ul>
+        </div>
+
+        <div class="ui-nav">
+          <h3>Core</h3>
+          <ul>
+            <li><a href="#Grid">Grids</a></li>
+          </ul>
+        </div>
+
+
+
       </div>
       <div class="ui-content flex-fill bd-l">
 
@@ -158,6 +178,8 @@
           </div>
 
         </div>
+        <!-- / form components -->
+
         <div id="Modals" class="card pd-20 mg-20 gap-20">
           <ContentDoc class="content-doc" path="/ui/modals"/>
           <flex gap="10">
@@ -166,7 +188,7 @@
 
           </flex>
           <modal v-model="modal1">
-              <delete-modal record="Users"></delete-modal>
+            <delete-modal record="Users"></delete-modal>
             <div class="d-flex gap-15 justify-content-center">
               <btn color="primary-outline" size="lg" class="pd-x-40" @click="modal1 = false">No</btn>
               <btn color="danger" size="lg" class="pd-x-40" @click="modal1 = false">Yes, Delete</btn>
@@ -178,6 +200,381 @@
             scrambled it to make a type specimen book. It has survived not only five centuries
           </modal>
         </div>
+        <div id="Alerts" class="card pd-20 mg-20 gap-20">
+
+          <ContentDoc class="content-doc" path="/ui/alerts"/>
+
+          <alert color="info" icon="ri ri-alert-line">Sorry you don't have a permission</alert>
+          <alert color="warning" icon="ri ri-alert-line">Sorry you don't have a permission</alert>
+          <alert color="danger" icon="ri ri-alert-line">Sorry you don't have a permission</alert>
+
+        </div>
+        <div id="Avatars" class="card pd-20 mg-20 gap-20">
+          <ContentDoc class="content-doc" path="/ui/avatars"/>
+
+          <div class="d-flex">
+            <div class="flex-fill">
+              <avatar-group>
+                <avatar class="rounded-circle" size="50"
+                        src="https://api.dicebear.com/5.x/personas/svg?seed=5"></avatar>
+                <avatar class="rounded-circle" size="50"
+                        src="https://api.dicebear.com/5.x/personas/svg?seed=6"></avatar>
+                <avatar class="rounded-circle" size="50"
+                        src="https://api.dicebear.com/5.x/personas/svg?seed=7"></avatar>
+                <avatar class="rounded-circle" size="50"
+                        src="https://api.dicebear.com/5.x/personas/svg?seed=8"></avatar>
+                <avatar class="rounded-circle" size="50" title="+3"></avatar>
+              </avatar-group>
+            </div>
+            <div class="flex-fill d-flex align-items-center gap-20">
+              <avatar class="rounded" size="80" src="https://api.dicebear.com/5.x/personas/svg?seed=5"></avatar>
+              <avatar class="rounded" size="80" title="AA"></avatar>
+              <avatar class="rounded" size="50" src="https://api.dicebear.com/5.x/personas/svg?seed=7"></avatar>
+              <avatar class="rounded" size="50" title="AA"></avatar>
+              <avatar class="rounded-circle" size="50" title="AA"></avatar>
+              <avatar class="rounded-circle" size="50" icon="ri-user-line"></avatar>
+            </div>
+
+          </div>
+
+        </div>
+        <div id="Splitter" class="card pd-20 mg-20 gap-20">
+          <ContentDoc class="content-doc" path="/ui/splitters"/>
+          <splitter-x class="bd rounded mg-b-30" :left-column-size="30" :right-column-size="70">
+            <template #left>
+              <div class="pd-20">
+                There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                alteration
+                in
+                some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+                going
+                to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarr
+              </div>
+            </template>
+            <template #right>
+              <splitter-y class="bd rounded" :top-column-size="30" :bottom-column-size="70" :init-height="500">
+                <template #left>
+                  <div class="pd-20">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration in
+                    some form, by injected humour, or randomised words which don't look even slightly believable. If you
+                    are
+                    going
+                    to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarr
+                  </div>
+                </template>
+                <template #right>
+                  <div class="pd-20">
+                    There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                    alteration in
+                    some form, by injected humour, or randomised words which don't look even slightly believable. If you
+                    are
+                    going
+                    to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarr
+                  </div>
+                </template>
+              </splitter-y>
+            </template>
+          </splitter-x>
+        </div>
+        <div id="Tabs" class="card pd-20 mg-20 gap-20">
+
+
+          <tabs class="mg-b-30" size="sm" :model="items" v-model:activeIndex="activeIndex">
+            <tab-content :tab-index="0" :active-tab="activeIndex" class="">
+              <h4>There are many variations</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="1" :active-tab="activeIndex" class="">
+              <h4>Variations of passages</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="2" :active-tab="activeIndex" class="">
+              <h4>Passages of Lorem</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="3" :active-tab="activeIndex" class="">
+              <h4>Alteration in some form</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="4" :active-tab="activeIndex" class="">
+              <h4>Lorem Ipsum available</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+
+            </tab-content>
+          </tabs>
+          <tabs class="mg-b-30" size="md" :model="items" v-model:activeIndex="activeIndex">
+            <tab-content :tab-index="0" :active-tab="activeIndex" class="">
+              <h4>There are many variations</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="1" :active-tab="activeIndex" class="">
+              <h4>Variations of passages</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="2" :active-tab="activeIndex" class="">
+              <h4>Passages of Lorem</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="3" :active-tab="activeIndex" class="">
+              <h4>Alteration in some form</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="4" :active-tab="activeIndex" class="">
+              <h4>Lorem Ipsum available</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+
+            </tab-content>
+          </tabs>
+          <tabs class="mg-b-30" size="lg" :model="items" v-model:activeIndex="activeIndex">
+            <tab-content :tab-index="0" :active-tab="activeIndex" class="">
+              <h4>There are many variations</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="1" :active-tab="activeIndex" class="">
+              <h4>Variations of passages</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="2" :active-tab="activeIndex" class="">
+              <h4>Passages of Lorem</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="3" :active-tab="activeIndex" class="">
+              <h4>Alteration in some form</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="4" :active-tab="activeIndex" class="">
+              <h4>Lorem Ipsum available</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+
+            </tab-content>
+          </tabs>
+          <tabs class="mg-b-30" size="md" variant="horizontal" :model="items" v-model:activeIndex="activeIndex">
+            <tab-content :tab-index="0" :active-tab="activeIndex" class="">
+              <h4>There are many variations</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="1" :active-tab="activeIndex" class="">
+              <h4>Variations of passages</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="2" :active-tab="activeIndex" class="">
+              <h4>Passages of Lorem</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="3" :active-tab="activeIndex" class="">
+              <h4>Alteration in some form</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="4" :active-tab="activeIndex" class="">
+              <h4>Lorem Ipsum available</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+
+            </tab-content>
+          </tabs>
+          <tabs class="mg-b-30" size="md" variant="horizontal reverse" :model="items" v-model:activeIndex="activeIndex">
+            <tab-content :tab-index="0" :active-tab="activeIndex" class="">
+              <h4>There are many variations</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="1" :active-tab="activeIndex" class="">
+              <h4>Variations of passages</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="2" :active-tab="activeIndex" class="">
+              <h4>Passages of Lorem</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="3" :active-tab="activeIndex" class="">
+              <h4>Alteration in some form</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+            </tab-content>
+            <tab-content :tab-index="4" :active-tab="activeIndex" class="">
+              <h4>Lorem Ipsum available</h4>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in
+              some form, by injected humour, or randomised words which don't look even slightly believable. If you are
+              going
+              to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the
+              middle
+              of
+              text
+
+            </tab-content>
+          </tabs>
+
+        </div>
+
+        <!-- / Ui components -->
+
         <div id="Grid" class="card pd-50 gap-20 mg-b-30">
           <ContentDoc class="content-doc" path="/ui/grid"/>
           <grid>
@@ -213,10 +610,12 @@
             </grid-col>
           </grid>
         </div>
-
+        <!-- / Core components -->
 
       </div>
     </section>
+
+
 
 
   </div>
@@ -239,6 +638,7 @@ export default {
     const modal4 = ref(false);
 
     const selected = ref("");
+    const activeIndex = ref(0);
     const inputValue = ref("");
     const rangeValue = ref();
 
@@ -290,6 +690,17 @@ export default {
     )
 
 
+    const items = reactive(
+        [
+          {label: 'Home', icon: 'ri-mail-send-line'},
+          {label: 'Calendar', icon: 'ri-calendar-2-line'},
+          {label: 'Edit', icon: 'ri-edit-line'},
+          {label: 'Documentation', icon: 'ri-mail-send-line'},
+          {label: 'Settings', icon: 'ri-settings-3-line'}
+        ]
+    )
+
+
     const updateInputValue = (newValue) => {
       console.log(newValue)
     }
@@ -312,6 +723,8 @@ export default {
       dateValue,
       dateRangeValue,
       isLoading,
+      items,
+      activeIndex
     }
   }
 

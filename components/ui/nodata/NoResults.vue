@@ -47,7 +47,7 @@
         </g>
       </svg>
       <slot>
-        <p class="op-6" :class="`tx-${txSize}`">{{ msg }}</p>
+        <p class="op-6 tx-center" :class="`tx-${txSize}`">{{ msg }}</p>
       </slot>
     </div>
   </div>

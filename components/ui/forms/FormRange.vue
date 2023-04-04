@@ -58,8 +58,8 @@ const emit = defineEmits(['update:modelValue'])
 
 const updateValue = (event) => {
   const value = event.target.value
-  inputValue.value = value
-  emit('update:modelValue', value)
+  inputValue.value = Number(value)
+  emit('update:modelValue', inputValue.value)
 }
 watchEffect(() => {
   inputValue.value = props.modelValue
