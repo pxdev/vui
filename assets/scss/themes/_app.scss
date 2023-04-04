@@ -63,3 +63,20 @@ body {
 }
 
 
+.content-doc {
+  margin-bottom: 20px;
+  pre {
+    border: 1px solid var(--border-color);
+    border-radius: $normal-radius;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #333;
+
+  }
+  h1 {
+    margin: 20px 0;
+  }
+
+
+}
+

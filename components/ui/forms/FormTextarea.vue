@@ -1,5 +1,5 @@
 <template>
-  <div class="form-group form-textarea">
+  <div class="form-group form-textarea"  v-bind="$attrs">
     <form-label v-if="props.label" :required="props.required">{{ props.label }}</form-label>
 
     <textarea v-if="props.adjustToText"
@@ -9,7 +9,7 @@
               :class="props.size"
               v-model="input"
               @input="updateValue"
-              v-bind="$attrs"
+
     />
     <textarea v-else
               ref="defaultTextarea"
@@ -18,7 +18,7 @@
               :class="props.size"
               v-model="input"
               @input="updateValue"
-              v-bind="$attrs"
+
     />
 
   </div>
@@ -38,20 +38,22 @@ const props = defineProps({
   }
 })
 
+
+
 const inputValue = ref(props.value)
-const emit = defineEmits(['update:value'])
+const emit = defineEmits(['update:modelValue'])
 
-const {textarea, input} = useTextareaAutosize()
+const {textarea, input} = useTextareaAutosize();
 
 
-watchEffect(() => {
-  inputValue.value = props.value
-})
 
 const updateValue = (event) => {
   const value = event.target.value
   inputValue.value = value
-  emit('update:value', value)
+  emit('update:modelValue', value)
 }
+watchEffect(() => {
+  inputValue.value = props.modelValue
+})
 
 </script>

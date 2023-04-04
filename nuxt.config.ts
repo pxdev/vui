@@ -23,6 +23,7 @@ export default defineNuxtConfig({
     modules: [
         '@pinia/nuxt',
         '@vueuse/nuxt',
+        '@nuxt/content',
         'nuxt-purgecss',
         [
             '@intlify/nuxt3',
@@ -34,6 +35,12 @@ export default defineNuxtConfig({
             }
         ]
     ],
+
+    content : {
+      highlight:  {
+          theme : 'github-dark'
+      }
+    },
 
     build: {
         transpile: ['@vuepic/vue-datepicker']

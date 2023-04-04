@@ -19,7 +19,6 @@ input::-webkit-inner-spin-button {
 
   .form-control {
     @extend %form-control;
-    min-height: $normal-form-size;
 
     &:disabled {
       background: #FAFAFA;
@@ -27,15 +26,15 @@ input::-webkit-inner-spin-button {
     }
 
     &.sm {
-      min-height: $small-form-size;
+      height: $small-form-size;
     }
 
     &.lg {
-      min-height: $large-form-size;
+      height: $large-form-size;
     }
 
     &.xl {
-      min-height: $extra-large-form-size;
+      height: $extra-large-form-size;
     }
 
 
@@ -139,29 +138,24 @@ input::-webkit-inner-spin-button {
       position: absolute;
       display: flex;
       flex-direction: column;
-      top: 50%;
-      transform: translateY(-50%);
-
+      top: 0;
+      bottom: 0;
       overflow: hidden;
-      border-radius: $normal-radius;
-
-      @include rtl(right, 4px, auto);
-      @include rtl(left, auto, 2px);
+       border-color: var(--border-color);
+      border-style: solid;
+      @include rtl(right, 0, auto);
+      @include rtl(left, auto, 0);
+      @include rtl(border-width, 0 0 0 1px , 0 1px 0 0);
+      align-items: center;
+      justify-content: center;
 
 
       a {
         display: flex;
-        width: 30px;
+        width: 35px;
         align-items: center;
         justify-content: center;
-        font-size: 14px;
-        background: var(--gray);
-        margin-bottom: 1px;
-
-
-        &:hover {
-           background: var(--dark-gray);
-        }
+        font-size: 0.8rem;
 
         &.disabled {
           opacity: 0.9;
@@ -170,12 +164,6 @@ input::-webkit-inner-spin-button {
 
         }
 
-      }
-
-      &.sm {
-        a {
-          font-size: 12px;
-        }
       }
 
 
@@ -282,7 +270,6 @@ input::-webkit-inner-spin-button {
 
       .grip {
         position: absolute;
-        right: 0;
         top: 1px;
         content: "";
         height: 16px;
@@ -292,6 +279,10 @@ input::-webkit-inner-spin-button {
         background: var(--light);
         transform: translate(50%, -50%);
         transition: 0.4s box-shadow ease-in-out, 0.1s transform ease-in-out;
+
+        @include rtl(inset, 1px 0 auto auto, 1px auto auto 0);
+        @include rtl(transform, translate(50%, -50%), translate(-50%, -50%));
+
 
       }
 
@@ -378,6 +369,22 @@ input::-webkit-inner-spin-button {
     }
 
   }
+
+&.sm {
+  label {
+    &:before {
+      font-size: 16px;
+     }
+  }
+}
+  &.lg {
+    label {
+      &:before {
+        font-size: 24px;
+      }
+    }
+  }
+
 }
 
 .password-meter {

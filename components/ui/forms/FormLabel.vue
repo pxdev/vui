@@ -1,5 +1,5 @@
 <template>
-  <label class="form-label">
+  <label class="form-label" v-bind="$attrs">
     <slot />
     <i v-if="props.required" class="tx-danger required-star">*</i>
   </label>
