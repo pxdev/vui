@@ -1,24 +1,38 @@
 <template>
   <div class="form-group form-textarea" v-bind="$attrs">
-
-
-    <flex :gap="orient === 'vertical' ? '' : '20'" :direction="orient === 'vertical' ? 'column' : 'row'  ">
-
-      <flex items="center" class="custom-radio" gap="5" v-for="(option, index) in props.options" :key="index+'radio'">
-        <input :id="`${RadioGroupId}_${index}`" :name="RadioGroupId" type="radio" :value="option" :checked="value === option"
-               @change="updateValue(option)"/>
-        <form-label :for="`${RadioGroupId}_${index}`" v-if="props.label" :required="props.required">{{ option }}</form-label>
+    <flex
+      :gap="orient === 'vertical' ? '' : '20'"
+      :direction="orient === 'vertical' ? 'column' : 'row'"
+    >
+      <flex
+        items="center"
+        class="custom-radio"
+        gap="5"
+        v-for="(option, index) in props.options"
+        :key="index + 'radio'"
+      >
+        <input
+          :id="`${RadioGroupId}_${index}`"
+          :name="RadioGroupId"
+          type="radio"
+          :value="option"
+          :checked="value === option"
+          @change="updateValue(option)"
+        />
+        <form-label
+          :for="`${RadioGroupId}_${index}`"
+          v-if="props.label"
+          :required="props.required"
+          >{{ option }}</form-label
+        >
       </flex>
     </flex>
-
-
   </div>
 </template>
 
 <script setup>
-
-import {computed, ref, watchEffect} from 'vue'
-import {useCommon} from "./composables/common";
+import { computed, ref, watchEffect } from 'vue'
+import { useCommon } from './composables/common'
 
 const props = defineProps({
   value: String,
@@ -33,8 +47,7 @@ const props = defineProps({
     default: 'horizontal'
   },
 
-  ...useCommon.props(), // spread the useCommon props here
-
+  ...useCommon.props() // spread the useCommon props here
 })
 
 const input = ref('')
@@ -54,5 +67,4 @@ const updateValue = (option) => {
 watchEffect(() => {
   inputValue.value = props.modelValue
 })
-
 </script>

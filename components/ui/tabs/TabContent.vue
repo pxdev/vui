@@ -1,27 +1,27 @@
 <template>
-  <div class="data-tabs-content" :class="'tab-'+tabIndex" v-if="tabIndex === activeTab">
+  <div
+    class="data-tabs-content"
+    :class="'tab-' + tabIndex"
+    v-if="tabIndex === activeTab"
+  >
     <slot />
   </div>
 </template>
 
 <script>
 export default {
-  name: "TabContent",
+  name: 'TabContent',
 
   props: {
     tabIndex: {
-      type: Number,
-     },
+      type: Number
+    },
 
     activeTab: {
-      type: Number,
-     },
-
-  },
-
+      type: Number
+    }
+  }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

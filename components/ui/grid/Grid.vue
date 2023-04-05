@@ -1,6 +1,6 @@
 <template>
   <div class="grid-row" :class="classList">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -10,16 +10,15 @@ export default {
   props: {
     items: String,
     content: Number,
-    className: String,
+    className: String
   },
   computed: {
     classList() {
       let classList = []
       if (this.items) classList.push(`align-items-${this.items}`)
       if (this.content) classList.push(`justify-content-${this.content}`)
-       return classList
+      return classList
     }
   }
-
 }
 </script>

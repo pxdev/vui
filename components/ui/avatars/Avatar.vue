@@ -1,18 +1,31 @@
 <template>
-  <div class="avatar d-flex justify-content-center align-items-center"
-       :style="{height: size+'px', width: size+'px', backgroundImage: `url('${src}')`}">
+  <div
+    class="avatar d-flex justify-content-center align-items-center"
+    :style="{
+      height: size + 'px',
+      width: size + 'px',
+      backgroundImage: `url('${src}')`
+    }"
+  >
+    <span
+      v-if="title"
+      class="flex-fill avatar-text"
+      :style="{ fontSize: size / 3 + 'px' }"
+      >{{ title }}</span
+    >
 
-    <span v-if="title" class="flex-fill avatar-text" :style="{ fontSize: size/3 +'px'}">{{ title }}</span>
-
-    <i v-if="icon" class="avatar-ico" :class="icon" :style="{ fontSize: size/3 +'px'}"></i>
-
+    <i
+      v-if="icon"
+      class="avatar-ico"
+      :class="icon"
+      :style="{ fontSize: size / 3 + 'px' }"
+    ></i>
   </div>
 </template>
 
 <script>
-
 export default {
-  name: "Avatar",
+  name: 'Avatar',
   props: {
     size: {
       type: String,
@@ -29,14 +42,9 @@ export default {
     icon: {
       type: String,
       default: null
-    },
-
+    }
   }
-
-
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

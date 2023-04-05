@@ -1,6 +1,6 @@
 <template>
   <div class="col" :class="classList">
-    <slot/>
+    <slot />
   </div>
 </template>
 
@@ -11,7 +11,7 @@ export default {
     sm: Number,
     md: Number,
     lg: Number,
-    className: String,
+    className: String
   },
   computed: {
     classList() {

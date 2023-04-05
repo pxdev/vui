@@ -6,16 +6,12 @@
 </template>
 
 <script setup>
-
 const props = defineProps({
   required: {
     type: Boolean,
     default: false
-  },
+  }
 })
-
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

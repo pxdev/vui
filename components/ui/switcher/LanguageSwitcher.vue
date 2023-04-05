@@ -10,23 +10,20 @@
 </template>
 
 <script>
-
-import {useI18n} from 'vue-i18n'
-import {useTextDirection} from '@vueuse/core'
-
+import { useI18n } from 'vue-i18n'
+import { useTextDirection } from '@vueuse/core'
 
 export default {
-  name: "LanguageSwitcher",
-
+  name: 'LanguageSwitcher',
 
   setup() {
-    const {availableLocales, locale} = useI18n()
+    const { availableLocales, locale } = useI18n()
     const dir = useTextDirection()
-
 
     const toggleLocales = () => {
       const locales = availableLocales
-      locale.value = locales[(locales.indexOf(locale.value) + 1) % locales.length]
+      locale.value =
+        locales[(locales.indexOf(locale.value) + 1) % locales.length]
       dir.value = dir.value === 'rtl' ? 'ltr' : 'rtl'
     }
 
@@ -37,5 +34,3 @@ export default {
   }
 }
 </script>
-
-

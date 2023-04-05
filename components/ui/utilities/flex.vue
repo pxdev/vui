@@ -1,7 +1,7 @@
 <template>
   <div
-      class="d-flex"
-      :class="`
+    class="d-flex"
+    :class="`
       ${gap ? 'gap-' + gap : ''}
       ${bg ? 'bg-' + bg : ''}
       ${position ? 'position-' + position : ''}
@@ -12,50 +12,49 @@
       ${content ? 'justify-content-' + content : ''}
       ${items ? 'align-items-' + items : ''}
         `"
-      :style="`width:${width}`"
+    :style="`width:${width}`"
   >
-    <slot/>
+    <slot />
   </div>
 </template>
 <script>
 export default {
-  name: "flex",
+  name: 'flex',
   props: {
     bg: {
-      type: String,
+      type: String
     },
     position: {
-      type: String,
+      type: String
     },
     direction: {
       type: String,
-      default: 'row',
+      default: 'row'
     },
     content: {
-      type: String,
-     },
+      type: String
+    },
     items: {
-      type: String,
-     },
+      type: String
+    },
     wrap: {
       type: Boolean,
-      default: false,
+      default: false
     },
     shrink: {
-      type: String,
-     },
+      type: String
+    },
     fill: {
       type: Boolean,
-      default: false,
+      default: false
     },
     gap: {
-      type: String,
-     },
+      type: String
+    },
     width: {
       type: String,
       default: ''
-    },
+    }
   }
 }
 </script>
-

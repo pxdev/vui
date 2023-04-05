@@ -1,14 +1,26 @@
 <template>
-   <div class="splitter-container splitter-y" :style='`height: ${initHeight}px`'>
-    <div :class="{'is-resizing' : isResizing }" class="splitter-pane left-pane d-flex align-items-center" tabindex="-1"
-         :style="{ flexBasis: topPaneHeight + '%' }">
+  <div class="splitter-container splitter-y" :style="`height: ${initHeight}px`">
+    <div
+      :class="{ 'is-resizing': isResizing }"
+      class="splitter-pane left-pane d-flex align-items-center"
+      tabindex="-1"
+      :style="{ flexBasis: topPaneHeight + '%' }"
+    >
       <slot name="left"></slot>
     </div>
-    <div :class="{'is-resizing' : isResizing }" class="splitter-gutter" @mousedown="startResize" tabindex="-1">
+    <div
+      :class="{ 'is-resizing': isResizing }"
+      class="splitter-gutter"
+      @mousedown="startResize"
+      tabindex="-1"
+    >
       <div class="splitter-handle"></div>
     </div>
-    <div :class="{'is-resizing' : isResizing }" class="splitter-pane right-pane d-flex align-items-center"
-         :style="{ flexBasis: bottomPaneHeight + '%' }">
+    <div
+      :class="{ 'is-resizing': isResizing }"
+      class="splitter-pane right-pane d-flex align-items-center"
+      :style="{ flexBasis: bottomPaneHeight + '%' }"
+    >
       <slot name="right"></slot>
     </div>
   </div>
@@ -16,7 +28,7 @@
 
 <script>
 export default {
-  name: "SplitterY",
+  name: 'SplitterY',
 
   props: {
     topColumnSize: {
@@ -25,9 +37,8 @@ export default {
     },
 
     initHeight: {
-      type: Number,
-     },
-
+      type: Number
+    },
 
     bottomColumnSize: {
       type: Number,
@@ -41,7 +52,7 @@ export default {
       bottomPaneHeight: this.bottomColumnSize,
       startY: 0,
       isResizing: false,
-      resizeFactor : null
+      resizeFactor: null
     }
   },
   mounted() {
@@ -55,16 +66,14 @@ export default {
       this.isResizing = true
     },
     resize(e) {
-
       const delta = e.clientY - this.startY
 
       let total = this.topPaneHeight + this.bottomPaneHeight
 
-      this.topPaneHeight += delta / total * 100 / this.resizeFactor
-      this.bottomPaneHeight -= delta / total * 100 / this.resizeFactor
+      this.topPaneHeight += ((delta / total) * 100) / this.resizeFactor
+      this.bottomPaneHeight -= ((delta / total) * 100) / this.resizeFactor
       this.startY = e.clientY
       this.isResizing = true
-
     },
     stopResize() {
       document.removeEventListener('mousemove', this.resize)
@@ -74,5 +83,3 @@ export default {
   }
 }
 </script>
-
-
