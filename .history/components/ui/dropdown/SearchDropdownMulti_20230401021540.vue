@@ -80,7 +80,7 @@
   </div>
 </template>
 
-<script>
+<script lang="js">
 import vueCustomScrollbar from 'vue-custom-scrollbar/src/vue-scrollbar.vue'
 import {ref, computed, watchEffect} from "vue";
 import {onClickOutside, useFocus, useMagicKeys, useToggle} from "@vueuse/core";
