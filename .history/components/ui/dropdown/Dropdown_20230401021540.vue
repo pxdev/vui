@@ -43,7 +43,7 @@
 
           </div>
           <div class="tx-center pd-5" v-else>
-            <no-results :tx-size="14" :size="80" :msg="$t('No matching results found for your query')"></no-results>
+            <no-results :tx-size="14" :size="80" msg="No matching results found for your query"></no-results>
           </div>
 
 

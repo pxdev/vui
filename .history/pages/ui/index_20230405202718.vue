@@ -1,4 +1,5 @@
 <template>
+
   <div>
 
 
@@ -46,96 +47,132 @@
         </div>
 
 
+
       </div>
       <div class="ui-content flex-fill bd-l">
 
         <div id="Forms" class="card pd-20 mg-20 gap-20">
-          <ContentDoc class="content-doc" path="/ui/forms" />
+          <ContentDoc class="content-doc" path="/ui/forms"/>
           <grid>
             <grid-col md="6">
               <div class="bd mg-b-25 pd-30 rounded">
-                <form-input-text v-for="n in sizes" :key="n" class="mg-b-15" :label="`Input Text ${n.name}`"
-                  v-model="inputValue" :size="n.name" @update:modelValue="updateInputValue"></form-input-text>
+                <form-input-text v-for="n in sizes" class="mg-b-15" :label="`Input Text ${n.name}`" v-model="inputValue"
+                                 :size="n.name" @update:modelValue="updateInputValue"></form-input-text>
               </div>
 
               <div class="bd mg-b-25 pd-30 rounded">
-                <form-check v-for="n in sizes" class="mg-b-15" :key="n" :label="`Input Check ${n.name}`"
-                  v-model="formSwitch" :size="n.name" @update:modelValue="updateInputValue"></form-check>
+                <form-check v-for="n in sizes" class="mg-b-15" :label="`Input Check ${n.name}`" v-model="formSwitch"
+                            :size="n.name" @update:modelValue="updateInputValue"></form-check>
               </div>
               <div class="bd mg-b-25 pd-30 rounded">
-                <form-switch v-for="n in sizes" :key="n" :label="`Toggle Switch ${n.name}`" class="mg-b-15"
-                  switch-color="primary" v-model="formSwitch" :size="n.name"
-                  @update:modelValue="updateInputValue"></form-switch>
+                <form-switch v-for="n in sizes" :label="`Toggle Switch ${n.name}`" class="mg-b-15"
+                             switch-color="primary" v-model="formSwitch" :size="n.name"
+                             @update:modelValue="updateInputValue"></form-switch>
               </div>
               <div class="bd mg-b-25 pd-30 rounded">
-                <form-input-number v-for="n in sizes" :key="n" class="mg-b-15" :label="`Input Number ${n.name}`"
-                  v-model="rangeValue" :size="n.name" @update:modelValue="updateInputValue"></form-input-number>
+                <form-input-number v-for="n in sizes" class="mg-b-15" :label="`Input Number ${n.name}`"
+                                   v-model="rangeValue" :size="n.name"
+                                   @update:modelValue="updateInputValue"></form-input-number>
               </div>
 
 
             </grid-col>
             <grid-col md="6">
               <div class="bd mg-b-25 pd-30 rounded">
-                <form-input-password v-for="n in sizes" :key="n" class="mg-b-15" :label="`Input Password ${n.name}`"
-                  v-model="inputValue" :size="n.name" @update:modelValue="updateInputValue"></form-input-password>
+                <form-input-password v-for="n in sizes" class="mg-b-15" :label="`Input Password ${n.name}`"
+                                     v-model="inputValue" :size="n.name"
+                                     @update:modelValue="updateInputValue"></form-input-password>
               </div>
               <div class="bd mg-b-25 pd-30 rounded">
                 <form-textarea class="mg-b-15" adjust-to-text v-model="inputValue" label="Adjust to text Textarea"
-                  placeholder="Enter your value" @update:modelValue="updateInputValue"></form-textarea>
-                <form-textarea v-for="n in sizes" class="mg-b-15" :key="n" :label="`Input Text ${n.name}`"
-                  v-model="rangeValue" :size="n.name" @update:modelValue="updateInputValue"></form-textarea>
+                               placeholder="Enter your value" @update:modelValue="updateInputValue"></form-textarea>
+                <form-textarea v-for="n in sizes" class="mg-b-15" :label="`Input Text ${n.name}`" v-model="rangeValue"
+                               :size="n.name" @update:modelValue="updateInputValue"></form-textarea>
               </div>
               <div class="bd mg-b-25 pd-30 rounded">
                 <form-range class="mg-b-15" range-percentage range-color="primary" v-model="rangeValue"
-                  @update:modelValue="updateInputValue"></form-range>
+                            @update:modelValue="updateInputValue"></form-range>
               </div>
             </grid-col>
           </grid>
         </div>
         <div id="Dropdown" class="card pd-20 mg-20 gap-20">
-          <ContentDoc class="content-doc" path="/ui/dropdown" />
+          <ContentDoc class="content-doc" path="/ui/dropdown"/>
           <grid class="mg-b-30">
             <grid-col :md="4" class="form-group flex-fill">
               <label>Normal Dropdown</label>
-              <dropdown v-model="selected" class="form-dropdown lg" :toggle-arrow="true"
-                placeholder="Dropdown Placeholder" :items="links"></dropdown>
+              <dropdown
+                  v-model="selected"
+                  class="form-dropdown lg"
+                  :toggle-arrow="true"
+                  placeholder="Dropdown Placeholder"
+                  :items="links"
+              ></dropdown>
             </grid-col>
             <grid-col :md="4" class="form-group flex-fill">
               <label>Normal Dropdown With Search</label>
-              <dropdown v-model="selected" class="form-dropdown lg" :toggle-arrow="true" :searchable="true"
-                placeholder="Dropdown Placeholder" :items="links"></dropdown>
+              <dropdown
+                  v-model="selected"
+                  class="form-dropdown lg"
+                  :toggle-arrow="true"
+                  :searchable="true"
+                  placeholder="Dropdown Placeholder"
+                  :items="links"
+              ></dropdown>
             </grid-col>
             <grid-col :md="4" class="form-group flex-fill">
               <label>Normal Dropdown With Search</label>
-              <dropdown v-model="selected" class="form-dropdown lg" :loading="true" :toggle-arrow="true"
-                :searchable="true" placeholder="Dropdown Placeholder" :items="links"></dropdown>
+              <dropdown
+                  v-model="selected"
+                  class="form-dropdown lg"
+                  :loading="true"
+                  :toggle-arrow="true"
+                  :searchable="true"
+                  placeholder="Dropdown Placeholder"
+                  :items="links"
+              ></dropdown>
             </grid-col>
             <grid-col :md="4" class="form-group flex-fill">
               <label>Multi Select Dropdown</label>
-              <search-dropdown-multi class="form-dropdown lg" :toggle-arrow="true" placeholder="Dropdown Placeholder"
-                :items="links" :items-limit="2"></search-dropdown-multi>
+              <search-dropdown-multi class="form-dropdown lg"
+                                     :toggle-arrow="true"
+                                      placeholder="Dropdown Placeholder"
+                                     :items="links"
+                                     :items-limit="2"
+              ></search-dropdown-multi>
             </grid-col>
             <grid-col :md="4" class="form-group flex-fill">
               <label>Multi Select Dropdown</label>
-              <search-dropdown-multi class="form-dropdown lg" :toggle-arrow="true" :searchable="true"
-                placeholder="Dropdown Placeholder" :items="links" :items-limit="2"></search-dropdown-multi>
+              <search-dropdown-multi class="form-dropdown lg"
+                                     :toggle-arrow="true"
+                                     :searchable="true"
+                                     placeholder="Dropdown Placeholder"
+                                     :items="links"
+                                     :items-limit="2"
+              ></search-dropdown-multi>
             </grid-col>
             <grid-col :md="4" class="form-group flex-fill">
               <label>Multi Select Dropdown Loading</label>
-              <search-dropdown-multi class="form-dropdown lg" :toggle-arrow="true" :searchable="true" :loading="true"
-                placeholder="Dropdown Placeholder" :items="links" :items-limit="2"></search-dropdown-multi>
+              <search-dropdown-multi class="form-dropdown lg"
+                                     :toggle-arrow="true"
+                                     :searchable="true"
+                                     :loading="true"
+                                     placeholder="Dropdown Placeholder"
+                                     :items="links"
+                                     :items-limit="2"
+              ></search-dropdown-multi>
             </grid-col>
           </grid>
         </div>
         <div id="Buttons" class="card pd-20 mg-20 gap-20">
-          <ContentDoc class="content-doc" path="/ui/buttons" />
+          <ContentDoc class="content-doc" path="/ui/buttons"/>
           <div class="d-flex gap-10 mg-b-30 align-items-center demo-buttons flex-wrap" v-for="btn in buttons"
-            :key="btn + '_btn'">
+               :key="btn+'_btn'">
             <btn :color="btn.name" size="lg">{{ btn.name }} large</btn>
             <btn :color="btn.name" size="lg" icon="ri-download-line tx-20">{{ btn.name }} with icon
             </btn>
             <btn :color="btn.name">{{ btn.name }} normal</btn>
-            <btn :color="btn.name + '-outline'">{{ btn.name }} outline</btn>
+            <btn :color="btn.name+'-outline'">{{ btn.name }} outline</btn>
             <btn :color="btn.name" :loading="true">{{ btn.name }} loading</btn>
             <btn disabled="disabled" :type="btn.name">{{ btn.name }} disabled</btn>
           </div>
@@ -144,7 +181,7 @@
         <!-- / form components -->
 
         <div id="Modals" class="card pd-20 mg-20 gap-20">
-          <ContentDoc class="content-doc" path="/ui/modals" />
+          <ContentDoc class="content-doc" path="/ui/modals"/>
           <flex gap="10">
             <btn color="primary" @click="modal2 = true">Show Modal</btn>
             <btn color="danger-outline" @click="modal1 = true">Delete Modal</btn>
@@ -165,7 +202,7 @@
         </div>
         <div id="Alerts" class="card pd-20 mg-20 gap-20">
 
-          <ContentDoc class="content-doc" path="/ui/alerts" />
+          <ContentDoc class="content-doc" path="/ui/alerts"/>
 
           <alert color="info" icon="ri ri-alert-line">Sorry you don't have a permission</alert>
           <alert color="warning" icon="ri ri-alert-line">Sorry you don't have a permission</alert>
@@ -173,15 +210,19 @@
 
         </div>
         <div id="Avatars" class="card pd-20 mg-20 gap-20">
-          <ContentDoc class="content-doc" path="/ui/avatars" />
+          <ContentDoc class="content-doc" path="/ui/avatars"/>
 
           <div class="d-flex">
             <div class="flex-fill">
               <avatar-group>
-                <avatar class="rounded-circle" size="50" src="https://api.dicebear.com/5.x/personas/svg?seed=5"></avatar>
-                <avatar class="rounded-circle" size="50" src="https://api.dicebear.com/5.x/personas/svg?seed=6"></avatar>
-                <avatar class="rounded-circle" size="50" src="https://api.dicebear.com/5.x/personas/svg?seed=7"></avatar>
-                <avatar class="rounded-circle" size="50" src="https://api.dicebear.com/5.x/personas/svg?seed=8"></avatar>
+                <avatar class="rounded-circle" size="50"
+                        src="https://api.dicebear.com/5.x/personas/svg?seed=5"></avatar>
+                <avatar class="rounded-circle" size="50"
+                        src="https://api.dicebear.com/5.x/personas/svg?seed=6"></avatar>
+                <avatar class="rounded-circle" size="50"
+                        src="https://api.dicebear.com/5.x/personas/svg?seed=7"></avatar>
+                <avatar class="rounded-circle" size="50"
+                        src="https://api.dicebear.com/5.x/personas/svg?seed=8"></avatar>
                 <avatar class="rounded-circle" size="50" title="+3"></avatar>
               </avatar-group>
             </div>
@@ -198,7 +239,7 @@
 
         </div>
         <div id="Splitter" class="card pd-20 mg-20 gap-20">
-          <ContentDoc class="content-doc" path="/ui/splitters" />
+          <ContentDoc class="content-doc" path="/ui/splitters"/>
           <splitter-x class="bd rounded mg-b-30" :left-column-size="30" :right-column-size="70">
             <template #left>
               <div class="pd-20">
@@ -535,7 +576,7 @@
         <!-- / Ui components -->
 
         <div id="Grid" class="card pd-50 gap-20 mg-b-30">
-          <ContentDoc class="content-doc" path="/ui/grid" />
+          <ContentDoc class="content-doc" path="/ui/grid"/>
           <grid>
             <grid-col :md="6">
               <div class="bg-gray pd-5 tx-center mg-b-20">col-6</div>
@@ -578,12 +619,13 @@
 
 
   </div>
+
 </template>
 
 <script>
-import { ref, reactive } from 'vue';
+import {ref, reactive} from 'vue';
 
-definePageMeta({ layout: 'ui' })
+definePageMeta({layout: 'ui'})
 export default {
   name: "index",
 
@@ -612,50 +654,50 @@ export default {
 
 
     const links = reactive(
-      [
-        { name: 'Ahmed', icon: 'ri-map-pin-line' },
-        { name: 'Ali', icon: 'ri-rocket-line' },
-        { name: 'Omar', icon: 'ri-user-add-line' },
-        { name: 'Fatima', icon: 'ri-gallery-upload-line' },
-        { name: 'Mohamed', icon: 'ri-user-add-line' },
-        { name: 'Hassan', icon: 'ri-user-add-line' },
-        { name: 'Sami', icon: 'ri-user-add-line' },
-        { name: 'Sara', icon: 'ri-headphone-line' },
-        { name: 'Salma', icon: 'ri-user-add-line' },
-      ]
+        [
+          {name: 'Ahmed', icon: 'ri-map-pin-line'},
+          {name: 'Ali', icon: 'ri-rocket-line'},
+          {name: 'Omar', icon: 'ri-user-add-line'},
+          {name: 'Fatima', icon: 'ri-gallery-upload-line'},
+          {name: 'Mohamed', icon: 'ri-user-add-line'},
+          {name: 'Hassan', icon: 'ri-user-add-line'},
+          {name: 'Sami', icon: 'ri-user-add-line'},
+          {name: 'Sara', icon: 'ri-headphone-line'},
+          {name: 'Salma', icon: 'ri-user-add-line'},
+        ]
     );
 
     const sizes = reactive(
-      [
-        { name: 'sm' },
-        { name: 'md' },
-        { name: 'lg' },
-      ]
+        [
+          {name: 'sm'},
+          {name: 'md'},
+          {name: 'lg'},
+        ]
     );
 
 
     const buttons = reactive(
-      [
-        { name: "default" },
-        { name: "primary" },
-        { name: "secondary" },
-        { name: "warning" },
-        { name: "success" },
-        { name: "info" },
-        { name: "danger" },
-        { name: "gray" },
-      ],
+        [
+          {name: "default"},
+          {name: "primary"},
+          {name: "secondary"},
+          {name: "warning"},
+          {name: "success"},
+          {name: "info"},
+          {name: "danger"},
+          {name: "gray"},
+        ],
     )
 
 
     const items = reactive(
-      [
-        { label: 'Home', icon: 'ri-mail-send-line' },
-        { label: 'Calendar', icon: 'ri-calendar-2-line' },
-        { label: 'Edit', icon: 'ri-edit-line' },
-        { label: 'Documentation', icon: 'ri-mail-send-line' },
-        { label: 'Settings', icon: 'ri-settings-3-line' }
-      ]
+        [
+          {label: 'Home', icon: 'ri-mail-send-line'},
+          {label: 'Calendar', icon: 'ri-calendar-2-line'},
+          {label: 'Edit', icon: 'ri-edit-line'},
+          {label: 'Documentation', icon: 'ri-mail-send-line'},
+          {label: 'Settings', icon: 'ri-settings-3-line'}
+        ]
     )
 
 

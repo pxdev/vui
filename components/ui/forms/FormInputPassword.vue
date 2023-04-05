@@ -4,6 +4,7 @@
 
     <flex position="relative" fill>
 
+
       <input @focusin="toggleMeter" @focusout="toggleMeter" :type="showPassword ? 'text' : 'password' "
              ref="input"
              :placeholder="props.placeholder"
@@ -11,7 +12,6 @@
              :class="props.size"
              :value="props.modelValue"
              @input="updateValue"
-             type="text"
       />
       <flex v-if="inputValue.length" class="show-password" position="absolute">
         <btn type="default"

@@ -3,9 +3,11 @@
 </template>
 
 <script>
-definePageMeta({ layout: 'plain' })
+definePageMeta({layout: 'plain'})
 export default {
-}
+ }
 </script>
 
-<style scoped></style>
+<style scoped>
+
+</style>

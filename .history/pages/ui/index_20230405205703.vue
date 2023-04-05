@@ -46,6 +46,7 @@
         </div>
 
 
+
       </div>
       <div class="ui-content flex-fill bd-l">
 
@@ -54,18 +55,17 @@
           <grid>
             <grid-col md="6">
               <div class="bd mg-b-25 pd-30 rounded">
-                <form-input-text v-for="n in sizes" :key="n" class="mg-b-15" :label="`Input Text ${n.name}`"
-                  v-model="inputValue" :size="n.name" @update:modelValue="updateInputValue"></form-input-text>
+                <form-input-text v-for="n in sizes" :key="n" class="mg-b-15" :label="`Input Text ${n.name}`" v-model="inputValue"
+                  :size="n.name" @update:modelValue="updateInputValue"></form-input-text>
               </div>
 
               <div class="bd mg-b-25 pd-30 rounded">
-                <form-check v-for="n in sizes" class="mg-b-15" :key="n" :label="`Input Check ${n.name}`"
-                  v-model="formSwitch" :size="n.name" @update:modelValue="updateInputValue"></form-check>
+                <form-check v-for="n in sizes" class="mg-b-15" :key="n" :label="`Input Check ${n.name}`" v-model="formSwitch"
+                  :size="n.name" @update:modelValue="updateInputValue"></form-check>
               </div>
               <div class="bd mg-b-25 pd-30 rounded">
-                <form-switch v-for="n in sizes" :key="n" :label="`Toggle Switch ${n.name}`" class="mg-b-15"
-                  switch-color="primary" v-model="formSwitch" :size="n.name"
-                  @update:modelValue="updateInputValue"></form-switch>
+                <form-switch v-for="n in sizes" :key="n" :label="`Toggle Switch ${n.name}`" class="mg-b-15" switch-color="primary"
+                  v-model="formSwitch" :size="n.name" @update:modelValue="updateInputValue"></form-switch>
               </div>
               <div class="bd mg-b-25 pd-30 rounded">
                 <form-input-number v-for="n in sizes" :key="n" class="mg-b-15" :label="`Input Number ${n.name}`"
@@ -82,8 +82,8 @@
               <div class="bd mg-b-25 pd-30 rounded">
                 <form-textarea class="mg-b-15" adjust-to-text v-model="inputValue" label="Adjust to text Textarea"
                   placeholder="Enter your value" @update:modelValue="updateInputValue"></form-textarea>
-                <form-textarea v-for="n in sizes" class="mg-b-15" :key="n" :label="`Input Text ${n.name}`"
-                  v-model="rangeValue" :size="n.name" @update:modelValue="updateInputValue"></form-textarea>
+                <form-textarea v-for="n in sizes" class="mg-b-15" :key="n" :label="`Input Text ${n.name}`" v-model="rangeValue"
+                  :size="n.name" @update:modelValue="updateInputValue"></form-textarea>
               </div>
               <div class="bd mg-b-25 pd-30 rounded">
                 <form-range class="mg-b-15" range-percentage range-color="primary" v-model="rangeValue"
