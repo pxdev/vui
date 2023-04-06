@@ -21,7 +21,7 @@ export default defineNuxtConfig({
     ],
 
     modules: [
-        '@pinia/nuxt',
+        '@nuxt/devtools',
         '@vueuse/nuxt',
         '@nuxt/content',
         'nuxt-purgecss',
