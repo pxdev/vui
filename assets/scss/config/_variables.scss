@@ -43,18 +43,18 @@ $primary-dark: hsl(248, 99%, 68%);
 $danger-dark: hsl(342, 78%, 62%);
 $warning-dark: hsl(14, 100%, 65%);
 $secondary-dark: hsl(225, 60%, 63%);
-$accent-dark : #FFAEAE;
-$success-dark: #6ECF98;
-$teal-dark: #84BCBD;
-$info-dark: #3A99B9;
-$pink-dark:#EA5381;
-$light-dark:#252628;
-$heading-color-dark : #FFF;
+$accent-dark : hsl(0, 100%, 84%);
+$success-dark: hsl(146, 50%, 62%);
+$teal-dark: hwb(181 52% 26%);
+$info-dark: hsl(195, 52%, 48%);
+$pink-dark:hsl(342, 78%, 62%);
+$light-dark:hsl(220, 4%, 15%);
+$heading-color-dark : hsl(0, 0%, 100%);
 
 // extra colors
-$gray-dark: #303134;
-$dark-gray-dark: #2e2f33;
-$dark-dark: #2e2f33;
+$gray-dark: hsl(225, 4%, 20%);
+$dark-gray-dark: hsl(228, 5%, 19%);
+$dark-dark: hsl(228, 5%, 19%);
 
 /* ********************************** */
 
