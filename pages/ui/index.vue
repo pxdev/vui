@@ -52,6 +52,8 @@
       <div class="ui-content flex-fill bd-l">
 
         <div id="Forms" class="card pd-20 mg-20 gap-20">
+
+
           <ContentDoc class="content-doc" path="/ui/forms"/>
           <grid>
             <grid-col :md="6">
@@ -596,6 +598,8 @@ import {ref, reactive} from 'vue';
 definePageMeta({
   layout: 'ui'
 })
+const x = ref();
+const y = ref();
 
 
 const modal1 = ref(false);

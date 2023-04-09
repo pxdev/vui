@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import { onMounted, ref } from 'vue';
+
 export default {
   name: 'SplitterY',
 
@@ -35,51 +37,55 @@ export default {
       type: Number,
       default: 50
     },
-
     initHeight: {
       type: Number
     },
-
     bottomColumnSize: {
       type: Number,
       default: 50
     }
   },
 
-  data() {
+  setup(props) {
+    const topPaneHeight = ref(props.topColumnSize);
+    const bottomPaneHeight = ref(props.bottomColumnSize);
+    const startY = ref(0);
+    const isResizing = ref(false);
+    const resizeFactor = ref(null);
+
+    onMounted(() => {
+      resizeFactor.value = (props.initHeight / 70);
+    });
+
+    function startResize(e) {
+      startY.value = e.clientY;
+      document.addEventListener('mousemove', resize);
+      document.addEventListener('mouseup', stopResize);
+      isResizing.value = true;
+    }
+
+    function resize(e) {
+      const delta = e.clientY - startY.value;
+      let total = topPaneHeight.value + bottomPaneHeight.value;
+
+      topPaneHeight.value += ((delta / total) * 100) / resizeFactor.value;
+      bottomPaneHeight.value -= ((delta / total) * 100) / resizeFactor.value;
+      startY.value = e.clientY;
+      isResizing.value = true;
+    }
+
+    function stopResize() {
+      document.removeEventListener('mousemove', resize);
+      document.removeEventListener('mouseup', stopResize);
+      isResizing.value = false;
+    }
+
     return {
-      topPaneHeight: this.topColumnSize,
-      bottomPaneHeight: this.bottomColumnSize,
-      startY: 0,
-      isResizing: false,
-      resizeFactor: null
-    }
-  },
-  mounted() {
-    this.resizeFactor = this.initHeight / 70
-  },
-  methods: {
-    startResize(e) {
-      this.startY = e.clientY
-      document.addEventListener('mousemove', this.resize)
-      document.addEventListener('mouseup', this.stopResize)
-      this.isResizing = true
-    },
-    resize(e) {
-      const delta = e.clientY - this.startY
-
-      let total = this.topPaneHeight + this.bottomPaneHeight
-
-      this.topPaneHeight += ((delta / total) * 100) / this.resizeFactor
-      this.bottomPaneHeight -= ((delta / total) * 100) / this.resizeFactor
-      this.startY = e.clientY
-      this.isResizing = true
-    },
-    stopResize() {
-      document.removeEventListener('mousemove', this.resize)
-      document.removeEventListener('mouseup', this.stopResize)
-      this.isResizing = false
-    }
+      topPaneHeight,
+      bottomPaneHeight,
+      startResize,
+      isResizing
+    };
   }
 }
 </script>

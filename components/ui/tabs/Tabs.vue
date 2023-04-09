@@ -2,7 +2,7 @@
   <nav ref="tabs" class="data-tabs" :class="[size, variant]">
     <ul ref="nav" class="tabbed-nav">
       <li
-        :class="{ active: i === d_activeIndex }"
+        :class="{ active: i === newActiveIndex }"
         v-for="(item, i) of model"
         :key="item + i + '_key'"
       >
@@ -57,7 +57,7 @@ export default {
   },
   data() {
     return {
-      d_activeIndex: this.activeIndex,
+      newActiveIndex: this.activeIndex,
       linePosition: null,
       lineWidth: null,
       lineHeight: null
@@ -65,7 +65,7 @@ export default {
   },
   watch: {
     activeIndex(newValue) {
-      this.d_activeIndex = newValue
+      this.newActiveIndex = newValue
     }
   },
 

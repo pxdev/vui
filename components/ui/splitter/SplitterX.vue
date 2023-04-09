@@ -26,7 +26,10 @@
   </div>
 </template>
 
+
 <script>
+import { ref } from 'vue'
+
 export default {
   name: 'SplitterX',
 
@@ -41,35 +44,44 @@ export default {
     }
   },
 
-  data() {
-    return {
-      leftPaneWidth: this.leftColumnSize,
-      rightPaneWidth: this.rightColumnSize,
-      startX: 0,
-      isResizing: false
+  setup(props) {
+    const leftPaneWidth = ref(props.leftColumnSize)
+    const rightPaneWidth = ref(props.rightColumnSize)
+    const startX = ref(0)
+    const isResizing = ref(false)
+
+    const startResize = (e) => {
+      startX.value = e.clientX
+      document.addEventListener('mousemove', resize)
+      document.addEventListener('mouseup', stopResize)
+      isResizing.value = true
     }
-  },
-  methods: {
-    startResize(e) {
-      this.startX = e.clientX
-      document.addEventListener('mousemove', this.resize)
-      document.addEventListener('mouseup', this.stopResize)
-      this.isResizing = true
-    },
-    resize(e) {
-      const delta = e.clientX - this.startX
 
-      let total = this.leftPaneWidth + this.rightPaneWidth
+    const resize = (e) => {
+      const delta = e.clientX - startX.value
 
-      this.leftPaneWidth += ((delta / total) * 100) / 15
-      this.rightPaneWidth -= ((delta / total) * 100) / 15
-      this.startX = e.clientX
-      this.isResizing = true
-    },
-    stopResize() {
-      document.removeEventListener('mousemove', this.resize)
-      document.removeEventListener('mouseup', this.stopResize)
-      this.isResizing = false
+      let total = leftPaneWidth.value + rightPaneWidth.value
+
+      leftPaneWidth.value += ((delta / total) * 100) / 15
+      rightPaneWidth.value -= ((delta / total) * 100) / 15
+      startX.value = e.clientX
+      isResizing.value = true
+    }
+
+    const stopResize = () => {
+      document.removeEventListener('mousemove', resize)
+      document.removeEventListener('mouseup', stopResize)
+      isResizing.value = false
+    }
+
+    return {
+      leftPaneWidth,
+      rightPaneWidth,
+      startX,
+      isResizing,
+      startResize,
+      resize,
+      stopResize
     }
   }
 }
